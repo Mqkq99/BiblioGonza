@@ -23,7 +23,7 @@ namespace BiblioGonza.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Sarasa()
         {
             return View();
         }
