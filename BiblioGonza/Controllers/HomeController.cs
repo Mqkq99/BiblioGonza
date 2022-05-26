@@ -28,6 +28,11 @@ namespace BiblioGonza.Controllers
             return View();
         }
 
+        public IActionResult Sarasa2()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
