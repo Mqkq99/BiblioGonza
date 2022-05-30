@@ -22,22 +22,10 @@ namespace BiblioGonza.Controllers
         {
             return View();
         }
-
-        public IActionResult Sarasa()
+        public IActionResult Privacy()
         {
             return View();
         }
-
-        public IActionResult Sarasa2()
-        {
-            return View();
-        }
-
-        public IActionResult Sarasa3()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
