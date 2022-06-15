@@ -18,6 +18,6 @@ namespace LibraryApp.DAL
 
         public DbSet<Book> Books { get; set; }
         public DbSet<BookCopy> BooksCopies { get; set; }
-
+        public DbSet<Customer> Customers { get; set; }
     }
 }
