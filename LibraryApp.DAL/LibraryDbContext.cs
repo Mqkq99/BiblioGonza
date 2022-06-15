@@ -17,6 +17,7 @@ namespace LibraryApp.DAL
         }
 
         public DbSet<Book> Books { get; set; }
-        public DbSet<BookCopy> BooksCopy { get; set; }
+        public DbSet<BookCopy> BooksCopies { get; set; }
+
     }
 }

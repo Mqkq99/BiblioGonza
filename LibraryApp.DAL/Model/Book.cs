@@ -12,5 +12,7 @@ namespace LibraryApp.DAL.Model
 
         public string Title { get; set; }
 
+        public string Falopa { get; set; }
+
     }
 }

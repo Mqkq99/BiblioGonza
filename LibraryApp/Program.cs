@@ -19,10 +19,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-//builder.Services.AddDbContextFactory<LibraryDbContext>(
-//        options => options.UseSqlServer("Server:.\\MSSQLSERVER; Database: libraryDb; Trusted_Connection=True;"));
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
