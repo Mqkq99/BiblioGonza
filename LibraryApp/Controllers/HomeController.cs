@@ -1,13 +1,8 @@
-﻿using BiblioGonza.Models;
+﻿using LibraryApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace BiblioGonza.Controllers
+namespace LibraryApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -23,17 +18,7 @@ namespace BiblioGonza.Controllers
             return View();
         }
 
-        public IActionResult Sarasa()
-        {
-            return View();
-        }
-
-        public IActionResult Sarasa2()
-        {
-            return View();
-        }
-
-        public IActionResult Sarasa3()
+        public IActionResult Privacy()
         {
             return View();
         }
