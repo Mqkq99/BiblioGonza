@@ -1,8 +1,74 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classimax</title>
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap-slider.css">
+  <!-- Font Awesome -->
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+</head>
+
+<body class="body-wrapper">
+
+<section class="hero-area bg-1 text-center overly">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content-block">
+					<h1>Search book </h1>
+					<p>Choose book´s name </p>
+				</div>
+				<div class="advance-search">
+						<div class="container" >
+							<div class="row justify-content-center">
+								<div class="col-lg-12 col-md-12 align-content-center">
+										<form >
+											<div class="form-row">
+												<div class="form-group col-md-4">
+													<input type="text" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="Book name">
+												</div>
+												<div class="form-group col-md-3">
+                                                    <select class="w-100 form-control mt-lg-1 mt-md-2">
+                                                        <option>Category</option>
+                                                        <option value="1">Novela</option>
+                                                        <option value="2">Historia</option>
+                                                        <option value="3">Ciencia</option>
+                                                        <option value="4">Arte</option>
+                                                        <option value="5">Matematica</option>
+                                                    </select>
+												</div>
+										
+												<div class="form-group col-md-2 align-self-center" >
+													<button type="submit" class="btn btn-primary">Search Now</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+</section>
+
+</body>
+
+</html>
+
+
+
