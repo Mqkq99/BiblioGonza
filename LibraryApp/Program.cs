@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<LibraryDbContext>(
-        options => options.UseSqlServer("Server=.;Database=libraryDb;User Id=sa;Password=localhostpass;"));
+        options => options.UseSqlServer("Server=.;Database=libraryDb;Trusted_Connection=True"));
 
 var app = builder.Build();
 
