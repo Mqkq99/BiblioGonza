@@ -12,9 +12,7 @@ namespace LibraryApp.DAL
     {
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options)
         : base(options)
-        {
-
-        }
+        {}
 
         public DbSet<Book> Books { get; set; }
         public DbSet<BookCopy> BooksCopies { get; set; }

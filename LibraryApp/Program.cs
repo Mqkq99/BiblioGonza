@@ -1,3 +1,5 @@
+using Library.Services.Interfaces;
+using Library.Services.Services;
 using LibraryApp.DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<LibraryDbContext>(
-        options => options.UseSqlServer("Server=.;Database=libraryDb;User Id=sa;Password=localhostpass;"));
+        options => options.UseSqlServer("Server=.;Database=libraryDb;Trusted_Connection=True"));
+
+builder.Services.AddScoped<IBookService, BookService>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
