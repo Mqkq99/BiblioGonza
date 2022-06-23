@@ -16,3 +16,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+.myform {
+    border: 2px outset black;
+    background-color: white;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-image:
+}
+.container{
+    background-image:src("../")
+}
+.myforma {
+    font-size: large;
+}
+.fondo{
+    background-image:src("../Images/1200px-Biblioteca-montserrat.jpg")
+}
