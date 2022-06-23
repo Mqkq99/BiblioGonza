@@ -1,4 +1,5 @@
-﻿using LibraryApp.Models;
+﻿using Library.Services.Interfaces;
+using Library.Services.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -14,6 +15,11 @@ namespace LibraryApp.Controllers
         }
 
         public IActionResult Index()
+        {          
+            return View();
+        }
+
+        public IActionResult Sarasa()
         {
             return View();
         }

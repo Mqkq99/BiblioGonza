@@ -1,0 +1,48 @@
+﻿@model Library.Services.ViewModels.BookViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+.myform{
+  border: 2px outset black;
+  background-color: white  ;
+  text-align: center;
+  font-family: Arial;
+  
+}
+
+.myforma {
+  font-size: large;
+}
+
+</style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+    <div class="myform" >
+            <h1 class="display-4">Simple form</h1>
+
+        <form asp-action="Create" method="post">
+            <div class="myforma">
+                <label asp-for="Title">Title:</label>
+                <input asp-for="Title" />
+            </div>
+            <div  class="myforma">
+                <label asp-for="Author" class="" >Author:</label>
+                <input asp-for="Author" />
+            </div>            
+            <div>
+               <p></p>
+            <button type="submit">Submit form</button>
+             <p></p>
+        </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
