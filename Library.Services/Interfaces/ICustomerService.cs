@@ -6,10 +6,12 @@ namespace Library.Services.Interfaces
     public interface ICustomerService
     {
 
-        CustomerViewModel GetCustomerById(Guid id);
+        CustomerViewModel GetCustomerById(string id);
 
-        Guid CreateCustomer(CustomerViewModel viewModel);
+        string CreateCustomer(CustomerViewModel viewModel);
+
         IEnumerable<Customer> getAllCustomer();
-        void Delete(Guid id);
+
+        void Delete(string id);
     }
 }

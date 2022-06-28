@@ -14,9 +14,9 @@
 <body>
     <h1>USUARIO CREADO</h1>
     <div class="container">
-        <p>Nombre: @ViewData["Name"]</p>
-        <p>Direccion: @ViewData["Address"]</p>
-        <p> Telefono : @ViewData["Phone"]</p>
+        <p>Nombre: @Model.Name</p>
+        <p>Direccion: @Model.Address</p>
+        <p> Telefono : @Model.PhoneNumber</p>
         <button class="btn-danger ">crear reserva </button>
 
     </div>

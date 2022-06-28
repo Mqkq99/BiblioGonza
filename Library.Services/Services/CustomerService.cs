@@ -13,20 +13,18 @@ namespace Library.Services.Services
         {
             _context = context != null ? context : throw new ArgumentNullException(nameof(context));
         }
-        public Guid CreateCustomer(CustomerViewModel viewModel)
+        public string CreateCustomer(CustomerViewModel viewModel)
         {
             Customer customer = new Customer() { Address = viewModel.Address, Name = viewModel.Name, PhoneNumber = viewModel.PhoneNumber };
-
-            customer.Id = Guid.NewGuid();
 
             _context.Add(customer);
 
             _context.SaveChanges();
 
-            return customer.Id;
+            return viewModel.Id;
         }
 
-        public CustomerViewModel GetCustomerById(Guid id)
+        public CustomerViewModel GetCustomerById(string id)
         {
             var customer = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
 
@@ -37,15 +35,11 @@ namespace Library.Services.Services
         public IEnumerable<Customer> getAllCustomer()
         {
             var list = _context.Customers;
-            List<CustomerViewModel> listModel = new List<CustomerViewModel>;
-            foreach (var item in list)
-            {
-                listModel.Add(new CustomerViewModel() { Address = item.Address, Name = item.Name,   
-            }
+            
             return list;
         }
 
-        public void Delete(Guid id)
+        public void Delete(string id)
         {
             var customer = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
             _context.Customers.Remove(customer);

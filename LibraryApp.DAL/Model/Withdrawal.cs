@@ -9,10 +9,11 @@ namespace LibraryApp.DAL.Model
     public class Withdrawal : EntityBase
     {
         public DateTime StartDate { get; set; }
+
         public DateTime EndDate { get; set; }
 
-        public BookCopy BookCopy { get; set; }
+        public virtual BookCopy BookCopy { get; set; }
 
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

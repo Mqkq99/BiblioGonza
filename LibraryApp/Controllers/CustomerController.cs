@@ -20,27 +20,24 @@ namespace LibraryApp.Controllers
         [HttpPost]
         public IActionResult Create(CustomerViewModel viewModel)
         {
-            var id = _customerService.CreateCustomer(viewModel);
+            string id = _customerService.CreateCustomer(viewModel).ToString();
 
-            return RedirectToAction("Profile", new { id });
+            return RedirectToAction("Details", new { id });
         }
 
-        [Route("Customer/Profile/{id}")]
-        public IActionResult Profile(Guid id)
+        [Route("Details/{id}")]
+        public IActionResult Details(string id)
         {
             var customer = _customerService.GetCustomerById(id);
-            ViewData["Name"] = customer.Name;
-            ViewData["Phone"] = customer.PhoneNumber;
-            ViewData["Address"] = customer.Address;
 
-            return View("Profile");
+            return View("Details", customer);
         }
 
-        public IActionResult ShowUsers()
+        public IActionResult List()
         {
             var users = _customerService.getAllCustomer();
           
-            return View("ShowUsers",users);
+            return View("List",users);
         }
 
         [HttpPost]

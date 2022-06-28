@@ -2,7 +2,7 @@
 
 namespace Library.Services.ViewModels
 {
-    public class CustomerViewModel:BaseViewModel
+    public class CustomerViewModel : BaseViewModel
     {
         public string Name { get; set; }
 
