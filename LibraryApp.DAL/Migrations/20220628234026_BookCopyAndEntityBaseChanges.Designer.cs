@@ -4,6 +4,7 @@ using LibraryApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryApp.DAL.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220628234026_BookCopyAndEntityBaseChanges")]
+    partial class BookCopyAndEntityBaseChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,6 +51,7 @@ namespace LibraryApp.DAL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BookId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("Disabled")
@@ -65,7 +68,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookCopies");
+                    b.ToTable("BooksCopies");
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Customer", b =>
@@ -128,7 +131,9 @@ namespace LibraryApp.DAL.Migrations
                 {
                     b.HasOne("LibraryApp.DAL.Model.Book", "Book")
                         .WithMany("BookCopies")
-                        .HasForeignKey("BookId");
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Book");
                 });

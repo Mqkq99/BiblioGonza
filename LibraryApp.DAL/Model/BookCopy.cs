@@ -10,6 +10,10 @@ namespace LibraryApp.DAL.Model
     {
         public Book Book { get; set; }
 
+        public string Edition { get; set; }
+
+        public int Quantity { get; set; }
+
         public virtual List<Withdrawal> Withdrawals { get; set; }
     }
 }
