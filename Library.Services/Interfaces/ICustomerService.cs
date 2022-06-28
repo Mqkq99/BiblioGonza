@@ -10,8 +10,7 @@ namespace Library.Services.Interfaces
 
         string CreateCustomer(CustomerViewModel viewModel);
 
-        IEnumerable<Customer> getAllCustomer();
-
+        List<CustomerViewModel> getAllCustomer();
         void Delete(string id);
     }
 }

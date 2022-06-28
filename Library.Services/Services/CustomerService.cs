@@ -15,7 +15,7 @@ namespace Library.Services.Services
         }
         public string CreateCustomer(CustomerViewModel viewModel)
         {
-            Customer customer = new Customer() { Address = viewModel.Address, Name = viewModel.Name, PhoneNumber = viewModel.PhoneNumber };
+            Customer customer = new Customer() { Address = viewModel.Address, Name = viewModel.Name, PhoneNumber = viewModel.PhoneNumber, Id = viewModel.Id };
 
             _context.Add(customer);
 
@@ -32,11 +32,16 @@ namespace Library.Services.Services
 
             return viewModel;
         }
-        public IEnumerable<Customer> getAllCustomer()
+        public List<CustomerViewModel> getAllCustomer()
         {
             var list = _context.Customers;
-            
-            return list;
+            List<CustomerViewModel> listUser = new List<CustomerViewModel>();
+            foreach (var customer in list)
+            {
+                listUser.Add(new CustomerViewModel() { Address = customer.Address, Name = customer.Name,Id=customer.Id});
+            }
+
+            return listUser;
         }
 
         public void Delete(string id)
