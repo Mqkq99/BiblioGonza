@@ -9,5 +9,7 @@ namespace LibraryApp.DAL.Model
     public class EntityBase
     {
         public string Id { get; set; }
+
+        public Boolean Disabled { get; set; }
     }
 }
