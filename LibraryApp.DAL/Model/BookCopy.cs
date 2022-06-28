@@ -9,5 +9,7 @@ namespace LibraryApp.DAL.Model
     public class BookCopy : EntityBase
     {
         public Book Book { get; set; }
+
+        public virtual List<Withdrawal> Withdrawals { get; set; }
     }
 }

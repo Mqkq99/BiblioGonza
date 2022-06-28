@@ -1,12 +1,15 @@
-﻿using LibraryApp.DAL.Model;
+﻿using Library.Services.ViewModels;
+using LibraryApp.DAL.Model;
 
 namespace Library.Services.Interfaces
 {
     public interface ICustomerService
     {
 
-        Customer GetCustomerById(Guid id);
+        CustomerViewModel GetCustomerById(Guid id);
 
-        Guid CreateCustomer(ICustomerService viewModel);
+        Guid CreateCustomer(CustomerViewModel viewModel);
+        IEnumerable<Customer> getAllCustomer();
+        void Delete(Guid id);
     }
 }

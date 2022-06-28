@@ -4,6 +4,7 @@ using LibraryApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryApp.DAL.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220623013820_ChangeCustomersPropertiesNames")]
+    partial class ChangeCustomersPropertiesNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.BookCopy", b =>
@@ -54,7 +56,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BooksCopies", (string)null);
+                    b.ToTable("BooksCopies");
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Customer", b =>
@@ -77,7 +79,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Withdrawal", b =>
@@ -104,7 +106,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Withdrawals", (string)null);
+                    b.ToTable("Withdrawals");
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.BookCopy", b =>

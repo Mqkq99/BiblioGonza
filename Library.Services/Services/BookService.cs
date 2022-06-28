@@ -18,13 +18,13 @@ namespace Library.Services.Services
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
 
-        public Book GetBookById(Guid id)
+        public BookViewModel GetBookById(Guid id)
         {
             var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
 
             var viewModel = book != null ? _mapper.Map<Book, BookViewModel>(book) : null;
 
-            return book;
+            return viewModel;
         }
 
         public Guid CreateBook(BookViewModel viewModel)
