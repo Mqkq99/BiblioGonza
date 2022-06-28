@@ -12,6 +12,7 @@ builder.Services.AddDbContext<LibraryDbContext>(
         options => options.UseSqlServer("Server=.;Database=libraryDb;Trusted_Connection=True"));
 
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

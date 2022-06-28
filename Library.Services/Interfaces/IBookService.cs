@@ -5,8 +5,8 @@ namespace Library.Services.Interfaces
 {
     public interface IBookService
     {
-        Book GetBookById(Guid id);
+        BookViewModel GetBookById(string id);
 
-        Guid CreateBook(BookViewModel viewModel);
+        string CreateBook(BookViewModel viewModel);
     }
 }

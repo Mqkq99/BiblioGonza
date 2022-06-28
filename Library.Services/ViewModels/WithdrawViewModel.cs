@@ -1,19 +1,19 @@
-﻿using System;
+﻿using LibraryApp.DAL.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryApp.DAL.Model
+namespace Library.Services.ViewModels
 {
-    public class Withdrawal : EntityBase
+    internal class WithdrawViewModel
     {
         public DateTime StartDate { get; set; }
-
         public DateTime EndDate { get; set; }
 
-        public virtual BookCopy BookCopy { get; set; }
+        public BookCopy BookCopy { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public Customer Customer { get; set; }
     }
 }

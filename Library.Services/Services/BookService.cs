@@ -18,16 +18,16 @@ namespace Library.Services.Services
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
 
-        public Book GetBookById(Guid id)
+        public BookViewModel GetBookById(string id)
         {
             var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
 
             var viewModel = book != null ? _mapper.Map<Book, BookViewModel>(book) : null;
 
-            return book;
+            return viewModel;
         }
 
-        public Guid CreateBook(BookViewModel viewModel)
+        public string CreateBook(BookViewModel viewModel)
         {
             try
             {
@@ -35,13 +35,11 @@ namespace Library.Services.Services
 
                 Book model = new Book() { Title = viewModel.Title, Author = viewModel.Author };
 
-                model.Id = Guid.NewGuid();
-
                 _context.Books.Add(model);
 
                 _context.SaveChanges();
 
-                return model.Id;
+                return viewModel.Id;
             }
             catch(Exception ex)
             {

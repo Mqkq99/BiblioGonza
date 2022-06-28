@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library.Services.ViewModels
 {
-    public class BaseViewModel
+    internal class BookCopyViewModel
     {
-        public string Id { get; set; }
+        public BookViewModel Book { get; set; }
     }
 }

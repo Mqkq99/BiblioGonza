@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryApp.DAL.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20220616011021_AddWithdrawal")]
-    partial class AddWithdrawal
+    [Migration("20220628224516_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,8 @@ namespace LibraryApp.DAL.Migrations
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Book", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -45,12 +44,12 @@ namespace LibraryApp.DAL.Migrations
 
             modelBuilder.Entity("LibraryApp.DAL.Model.BookCopy", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("BookId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("BookId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -61,19 +60,18 @@ namespace LibraryApp.DAL.Migrations
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Direccion")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Telefono")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -84,15 +82,16 @@ namespace LibraryApp.DAL.Migrations
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Withdrawal", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("BookCopyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("BookCopyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -112,7 +111,7 @@ namespace LibraryApp.DAL.Migrations
             modelBuilder.Entity("LibraryApp.DAL.Model.BookCopy", b =>
                 {
                     b.HasOne("LibraryApp.DAL.Model.Book", "Book")
-                        .WithMany()
+                        .WithMany("BookCopies")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -123,13 +122,13 @@ namespace LibraryApp.DAL.Migrations
             modelBuilder.Entity("LibraryApp.DAL.Model.Withdrawal", b =>
                 {
                     b.HasOne("LibraryApp.DAL.Model.BookCopy", "BookCopy")
-                        .WithMany()
+                        .WithMany("Withdrawals")
                         .HasForeignKey("BookCopyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LibraryApp.DAL.Model.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Withdrawals")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -137,6 +136,21 @@ namespace LibraryApp.DAL.Migrations
                     b.Navigation("BookCopy");
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("LibraryApp.DAL.Model.Book", b =>
+                {
+                    b.Navigation("BookCopies");
+                });
+
+            modelBuilder.Entity("LibraryApp.DAL.Model.BookCopy", b =>
+                {
+                    b.Navigation("Withdrawals");
+                });
+
+            modelBuilder.Entity("LibraryApp.DAL.Model.Customer", b =>
+                {
+                    b.Navigation("Withdrawals");
                 });
 #pragma warning restore 612, 618
         }

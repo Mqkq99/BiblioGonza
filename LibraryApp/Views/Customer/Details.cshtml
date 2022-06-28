@@ -1,0 +1,31 @@
+﻿@model Library.Services.ViewModels.CustomerViewModel
+@{
+    Layout = "_Layout";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>USUARIO CREADO</h1>
+    <div class="container">
+        <p>Nombre: @Model.Name</p>
+        <p>Direccion: @Model.Address</p>
+        <p> Telefono : @Model.PhoneNumber</p>
+        <button class="btn-danger ">crear reserva </button>
+
+    </div>
+    <div>
+
+        <h4>Historial de reservas</h4>
+        <table>
+            <li></li>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LibraryApp.DAL.Model.Customer>
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de usuarios</h1>
+    @if (Model.Any())
+    {
+        <a asp-action="Create" asp-controller="Customer"
+       class="btn btn-primary mb-3" style="width:auto">
+Agregar usuario        </a>
+
+        foreach (var user in Model)
+        {<form method="post">
+            <div class="card mb-3">
+                <div class="card-header">
+                    User Id : @user.Id
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@user.Name</h5>
+                </div>
+                <div class="card-footer">
+                    <a  class="btn btn-danger">Edit</a>
+                   
+                    <button class="btn btn-danger" type="submit" asp-action="Delete" asp-controller="Customer" >Delete</button>
+             
+                </div>
+            </div>
+              </form>
+        }
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header">
+                No users created yet
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Use the button below to create a user
+                </h5>
+                <a asp-action="Create" asp-controller="Customer"
+               class="btn btn-primary mb-3" style="width:auto">
+                   Agregar Usuario
+                </a>
+            </div>
+        </div>
+    }
+
+</body>
+</html>

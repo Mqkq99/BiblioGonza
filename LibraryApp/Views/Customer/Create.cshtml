@@ -1,4 +1,4 @@
-﻿@model Library.Services.ViewModels.BookViewModel
+﻿@model Library.Services.ViewModels.CustomerViewModel
 @{
     Layout = "_Layout";
 }
@@ -13,18 +13,22 @@
     
     <div class="myform fondo" >
         <br />
-            <h2 >Create book</h2>
+            <h2 >Create Customer</h2>
             <br />
         <form asp-action="Create" method="post">
             <div class="myforma">
-                <label asp-for="Title">Title:</label>
-                <input style="margin-left:18px" asp-for="Title" />
+                <label asp-for="Address">Direccion:</label>
+                <input style="margin-left:18px" asp-for="Address" />
             </div>
            
             <div  class="myforma">
-                <label asp-for="Author" class="" >Author:</label>
-                <input asp-for="Author" />
+                <label asp-for="Name" class="" >Nombre:</label>
+                <input asp-for="Name" />
             </div>            
+             <div  class="myforma">
+                <label asp-for="PhoneNumber" class="" >Telefono:</label>
+                <input asp-for="PhoneNumber" />
+            </div>        
             <div>
                <p></p>
             <button type="submit">Submit form</button>
