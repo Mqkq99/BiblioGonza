@@ -15,7 +15,7 @@ namespace Library.Services.Services
         }
         public string CreateCustomer(CustomerViewModel viewModel)
         {
-            Customer customer = new Customer() { Address = viewModel.Address, Name = viewModel.Name, PhoneNumber = viewModel.PhoneNumber };
+            Customer customer = new Customer() { Address = viewModel.Address, Name = viewModel.Name, PhoneNumber = viewModel.PhoneNumber, Id=viewModel.Id};
 
             _context.Add(customer);
 
