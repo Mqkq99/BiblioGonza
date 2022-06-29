@@ -49,7 +49,22 @@ namespace LibraryApp.Controllers
             return View("ShowUsers", users);
         }
 
+        public IActionResult Update(String id )
+        {
+           
+            return View("Update");
+        }
 
+        public IActionResult Details()
+        {
+            return View("Details");
+        }
+
+        public IActionResult Cancel(CustomerViewModel customer)
+        {
+
+            return View();
+        }
     }
 }
 
