@@ -3,11 +3,11 @@ using Library.Services.Interfaces;
 using Library.Services.ViewModels;
 namespace LibraryApp.Controllers
 {
-    public class BookCopyController : Controller
+    public class BookCopiesController : Controller
     {
         private readonly IBookCopyService _bookService;
 
-        public BookCopyController(IBookCopyService bookService)
+        public BookCopiesController(IBookCopyService bookService)
         {
             _bookService = bookService;
         }
