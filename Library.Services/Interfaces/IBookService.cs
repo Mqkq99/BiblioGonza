@@ -1,12 +1,13 @@
-﻿using Library.Services.ViewModels;
+﻿using Library.Services.ResultDTOs;
+using Library.Services.ViewModels.Books;
 using LibraryApp.DAL.Model;
 
 namespace Library.Services.Interfaces
 {
     public interface IBookService
     {
-        BookViewModel GetBookById(string id);
+        ValueResult<BookViewModel> GetById(string id);
 
-        string CreateBook(BookViewModel viewModel);
+        ValueResult<string> Create(BookViewModel viewModel);
     }
 }

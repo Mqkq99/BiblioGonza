@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Services.ViewModels
+namespace Library.Services.ViewModels.Base
 {
     public class BaseViewModel
     {

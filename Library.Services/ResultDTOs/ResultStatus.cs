@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Services.ViewModels
+namespace Library.Services.ResultDTOs
 {
-    internal class BookCopyViewModel
+    public enum ResultStatus
     {
-        public BookViewModel Book { get; set; }
+        Ok,
+        Error,
+        NotFound
     }
 }

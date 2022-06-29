@@ -1,5 +1,5 @@
 ﻿using Library.Services.Interfaces;
-using Library.Services.ViewModels;
+using Library.Services.ViewModels.Books;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApp.Controllers
@@ -21,7 +21,7 @@ namespace LibraryApp.Controllers
         [HttpPost]
         public IActionResult Create(BookViewModel viewModel)
         {
-            _bookService.CreateBook(viewModel);
+            _bookService.Create(viewModel);
             return View("Index");
         }       
     }

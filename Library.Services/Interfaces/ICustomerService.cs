@@ -1,4 +1,5 @@
-﻿using Library.Services.ViewModels;
+﻿using Library.Services.ResultDTOs;
+using Library.Services.ViewModels.Customers;
 using LibraryApp.DAL.Model;
 
 namespace Library.Services.Interfaces
@@ -6,14 +7,14 @@ namespace Library.Services.Interfaces
     public interface ICustomerService
     {
 
-        CustomerViewModel GetCustomerById(string id);
+        ValueResult<CustomerViewModel> GetById(string id);
 
-        string CreateCustomer(CustomerViewModel viewModel);
+        ValueResult<string> Create(CustomerViewModel viewModel);
 
-        //List<CustomerViewModel> getAllCustomers();
+        ValueResult<List<CustomerListViewModel>> getAll();
 
-        bool Delete(string id);
+        ValueResult<bool> Delete(string id);
 
-        CustomerViewModel Update(CustomerViewModel viewModel);
+        ValueResult<CustomerViewModel> Update(CustomerViewModel viewModel);
     }
 }
