@@ -54,7 +54,7 @@ namespace Library.Services.Services
 
                 _context.SaveChanges();
 
-                return ValueResult<string>.Ok(viewModel.Id);
+                return ValueResult<string>.Ok(model.Id);
             }
             catch(Exception ex)
             {

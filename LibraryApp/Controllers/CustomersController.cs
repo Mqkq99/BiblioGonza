@@ -23,12 +23,21 @@ namespace LibraryApp.Controllers
         {
             ValueResult<string> result = _customerService.Create(viewModel);
 
-            return RedirectToAction("Details", new { result.Result });
+            if (result.Success)
+            {
+                var routeValues = new RouteValueDictionary {
+                 { "id", result.Result } };
+                return RedirectToAction("Details",routeValues);
+
+            }
+            return View("Create", viewModel);
         }
+
+
 
         public IActionResult Details(string id)
         {
-             var customer = _customerService.GetById(id);
+            var customer = _customerService.GetById(id);
 
             return View("Details", customer.Result);
         }
