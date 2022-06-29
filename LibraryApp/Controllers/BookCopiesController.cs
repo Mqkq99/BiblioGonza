@@ -3,26 +3,27 @@ using Library.Services.Interfaces;
 using Library.Services.ViewModels;
 using Library.Services.ViewModels.Books;
 using Library.Services.ResultDTOs;
+using Library.Services.ViewModels.BookCopies;
 
 namespace LibraryApp.Controllers
 {
     public class BookCopiesController : Controller
     {
-        private readonly IBookCopyService _bookService;
+        private readonly IBookCopyService _bookCopyService;
 
         public BookCopiesController(IBookCopyService bookService)
         {
-            _bookService = bookService;
+            _bookCopyService = bookService;
         }
-        public IActionResult Create(string id)
+        public IActionResult Create(string bookid)
         {
-            ValueResult<BookCopyViewModel> viewModel = _bookService.GetById(id);
-
-            return View("Create", viewModel);
+            ValueResult<BookCopyCreateViewModel> viewModel = _bookCopyService.CreateInizialization(bookid);
+            return View("Create", viewModel.Result);
         }
+        [HttpPost]
         public IActionResult Details(BookViewModel viewModel)
         {
-            var book = new BookViewModel { Id = "ASDASD" };
+           
 
             return RedirectToAction("Details", "Books", new { });
         }

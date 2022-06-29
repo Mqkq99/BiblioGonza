@@ -2,6 +2,7 @@
 using Library.Services.Interfaces;
 using Library.Services.ResultDTOs;
 using Library.Services.ViewModels;
+using Library.Services.ViewModels.BookCopies;
 using Library.Services.ViewModels.Books;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
@@ -35,22 +36,34 @@ namespace Library.Services.Services
             return ValueResult<string>.Ok(viewModel.Id);
         }
 
-        public ValueResult<BookCopyViewModel> GetById(string id)
+        public ValueResult<BookCopyCreateViewModel> GetById(string id)
         {
             var bookCopy = _context.BookCopies.Where(x => x.Id == id).FirstOrDefault();
 
-            BookCopyViewModel viewModel = _mapper.Map<BookCopyViewModel>(bookCopy);
+            BookCopyCreateViewModel viewModel = _mapper.Map<BookCopyCreateViewModel>(bookCopy);
 
-            return ValueResult<BookCopyViewModel>.Ok(viewModel);
+
+            return ValueResult<BookCopyCreateViewModel>.Ok(viewModel);
         }
 
-        public BookViewModel GetBookById(string id)
+        private BookViewModel GetBookById(string id)
         {
             var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
 
             BookViewModel viewModel = _mapper.Map<BookViewModel>(book);
 
             return viewModel;
+        }
+
+        public ValueResult<BookCopyCreateViewModel> CreateInizialization(string id)
+        {
+            var book = GetBookById(id);
+            var copy = new BookCopyCreateViewModel()
+            {
+                Book = book
+            };
+            return ValueResult<BookCopyCreateViewModel>.Ok(copy);
+            
         }
     }
 }
