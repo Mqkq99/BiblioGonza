@@ -13,7 +13,7 @@ namespace Library.Services.Interfaces
         //List<CustomerViewModel> getAllCustomers();
 
         bool Delete(string id);
-
+        List<CustomerViewModel> getAll();
         CustomerViewModel Update(CustomerViewModel viewModel);
     }
 }

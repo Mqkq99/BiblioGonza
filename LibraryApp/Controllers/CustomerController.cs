@@ -24,7 +24,6 @@ namespace LibraryApp.Controllers
 
             return RedirectToAction("Details", new { id });
         }
-
         public IActionResult Details(string id)
         {
             var customer = _customerService.GetCustomerById(id);
@@ -40,12 +39,12 @@ namespace LibraryApp.Controllers
         //    return View("Details", customer);
         //}
 
-        //public IActionResult List()
-        //{
-        //    var users = _customerService.getAllCustomer();
+        public IActionResult List()
+        {
+           var users = _customerService.getAll();
 
-        //    return View("List",users);
-        //}
+           return View("List",users);
+        }
 
         //[HttpPost]
         //public IActionResult Delete(CustomerViewModel customer)

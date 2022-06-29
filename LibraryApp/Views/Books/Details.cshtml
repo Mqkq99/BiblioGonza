@@ -18,16 +18,7 @@
         <p>Direccion: @Model.Title</p>
         <button class="btn-danger ">crear reserva </button>
         <button> <a class="btn-dark" asp-controller="BookCopy" asp-action="Create">Agregar Copias</a></button>
-        @if (Model.Copies.Count > 0)
-        {
-            <table>
-                @foreach (var item in Model.Copies)
-                {
-                    <li>@item.Edition cantidad de coipias: @item.Quantity</li>
-                }
-            </table>
-
-        }
+  
 
 
     </div>
