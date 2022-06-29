@@ -42,16 +42,25 @@ namespace LibraryApp.Controllers
             return View("Details", customer.Result);
         }
 
-        //public IActionResult Update(CustomerViewModel viewModel)
-        //{
-        //    CustomerViewModel customer = _customerService.Update(viewModel);
+        [Route("Update/{id}")]
+        public IActionResult Update(string id)
+        {
+            ValueResult<CustomerViewModel> customer = _customerService.GetById(id);
 
-        //    return View("Details", customer);
-        //}
+            return View("Update", customer.Result);
+        }
+
+        [HttpPost]
+        public IActionResult Update(CustomerViewModel viewModel)
+        {
+            ValueResult<CustomerViewModel> customer = _customerService.Update(viewModel);
+
+            return View("Details", customer.Result);
+        }
 
         public IActionResult List()
         {
-            var users = _customerService.getAll();
+            ValueResult<List<CustomerListViewModel>> users = _customerService.getAll();
 
             return View("List", users.Result);
         }
@@ -62,7 +71,7 @@ namespace LibraryApp.Controllers
             _customerService.Delete(id);
             var users = _customerService.getAll();
 
-            return View("ShowUsers", users);
+            return View("List", users.Result);
         }
 
 
