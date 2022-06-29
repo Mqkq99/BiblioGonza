@@ -18,21 +18,21 @@
         <form asp-action="Create" method="post">
             <div class="myforma">
                 <label asp-for="Address">Direccion:</label>
-                <input style="margin-left:18px" asp-for="Address" />
+                <input style="margin-left:18px" asp-for="Address" required maxlength="60" />
             </div>
            
             <div  class="myforma">
                 <label asp-for="Name" class="" >Nombre:</label>
-                <input asp-for="Name" required maxlength="50"/>
+                <input asp-for="Name" required maxlength="50" required maxlenght="50"/>
                 
             </div>            
              <div  class="myforma">
                 <label asp-for="PhoneNumber" class="" >Telefono:</label>
-                <input asp-for="PhoneNumber" required maxlength="15" />
+                <input asp-for="PhoneNumber" required maxlength="15" type="number" min="0"/>
             </div>        
               <div  class="myforma">
                 <label asp-for="Id" class="" >DNI:</label>
-                <input asp-for="Id" required maxlength="12" />
+                <input asp-for="Id" required maxlength="9" type="number" />
             </div>        
             <div>
                <p></p>
