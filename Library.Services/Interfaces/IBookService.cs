@@ -9,5 +9,6 @@ namespace Library.Services.Interfaces
         ValueResult<BookViewModel> GetById(string id);
 
         ValueResult<string> Create(BookViewModel viewModel);
+        ValueResult<List<BookViewModel>> getAll();
     }
 }

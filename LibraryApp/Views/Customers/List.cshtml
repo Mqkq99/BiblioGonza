@@ -2,6 +2,9 @@
 @{
     Layout = "_Layout";
 }
+@if (@Model.Any())
+{
+    
 
 <h1>Index</h1>
 
@@ -49,3 +52,20 @@
 }
     </tbody>
 </table>
+}   else
+    {
+        <div class="card">
+            <div class="card-header">
+                No users created yet
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Use the button below to create a user
+                </h5>
+                <a asp-action="Create" asp-controller="Customers"
+               class="btn btn-primary mb-3" style="width:auto">
+                   Agregar Libro
+                </a>
+            </div>
+        </div>
+    }
