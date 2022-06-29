@@ -12,8 +12,8 @@ namespace LibraryApp.DAL.Model
 
         public DateTime EndDate { get; set; }
 
-        public virtual BookCopy BookCopy { get; set; }
+        public BookCopy BookCopy { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public Customer Customer { get; set; }
     }
 }

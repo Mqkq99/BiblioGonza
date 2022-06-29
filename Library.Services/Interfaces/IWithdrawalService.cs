@@ -1,5 +1,5 @@
 ﻿using Library.Services.ResultDTOs;
-using Library.Services.ViewModels;
+using Library.Services.ViewModels.Withdrawals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Library.Services.Interfaces
 {
     public interface IWithdrawalService
     {
-        public ValueResult<WithdrawalViewModel> GetById(string id);
+        public ValueResult<WithdrawalDetailViewModel> GetById(string id);
 
         public ValueResult<string> Create(WithdrawalViewModel viewModel);
     }

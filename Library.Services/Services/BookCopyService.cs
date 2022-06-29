@@ -19,6 +19,7 @@ namespace Library.Services.Services
             _context = context != null ? context : throw new ArgumentNullException(nameof(context));
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
+
         public ValueResult<string> Create(BookCopyViewModel viewModel)
         {
 
@@ -33,7 +34,6 @@ namespace Library.Services.Services
             _context.SaveChanges();
 
             return ValueResult<string>.Ok(viewModel.Id);
-
         }
 
         public ValueResult<BookCopyCreateViewModel> GetById(string id)

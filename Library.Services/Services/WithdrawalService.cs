@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using Library.Services.Interfaces;
 using Library.Services.ResultDTOs;
-using Library.Services.ViewModels;
+using Library.Services.ViewModels.Withdrawals;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library.Services.Services
 {
@@ -22,24 +23,28 @@ namespace Library.Services.Services
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
 
-        public ValueResult<WithdrawalViewModel> GetById(string id)
+        public ValueResult<WithdrawalDetailViewModel> GetById(string id)
         {
             try
             {
-                var withdrawal = _context.Withdrawals.Where(x => x.Id == id && !x.Disabled).FirstOrDefault();
+                var withdrawal = _context.Withdrawals
+                    .Include(x => x.BookCopy)
+                    .Include(x => x.Customer)
+                    .Where(x => x.Id == id && !x.Disabled)
+                    .FirstOrDefault();
 
                 if (withdrawal != null)
                 {
-                    var viewModel = _mapper.Map<WithdrawalViewModel>(withdrawal);
+                    var viewModel = _mapper.Map<WithdrawalDetailViewModel>(withdrawal);
 
-                    return ValueResult<WithdrawalViewModel>.Ok(viewModel);
+                    return ValueResult<WithdrawalDetailViewModel>.Ok(viewModel);
                 }
                 else
-                    return ValueResult<WithdrawalViewModel>.NotFound();
+                    return ValueResult<WithdrawalDetailViewModel>.NotFound();
             }
             catch (Exception ex)
             {
-                return ValueResult<WithdrawalViewModel>.Error(ex.Message);
+                return ValueResult<WithdrawalDetailViewModel>.Error(ex.Message);
             }
         }
 
@@ -65,7 +70,12 @@ namespace Library.Services.Services
                 withdrawal.Customer = customer;
                 withdrawal.BookCopy = bookCopy;
 
+                withdrawal.Id = Guid.NewGuid().ToString();
+
+                bookCopy.AvailableQuantity = bookCopy.AvailableQuantity - 1;
+
                 _context.Add(withdrawal);
+                _context.Update(bookCopy);
 
                 _context.SaveChanges();
 
