@@ -40,7 +40,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.BookCopy", b =>
@@ -68,7 +68,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookCopies");
+                    b.ToTable("BookCopies", (string)null);
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Customer", b =>
@@ -93,7 +93,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.Withdrawal", b =>
@@ -124,7 +124,7 @@ namespace LibraryApp.DAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Withdrawals");
+                    b.ToTable("Withdrawals", (string)null);
                 });
 
             modelBuilder.Entity("LibraryApp.DAL.Model.BookCopy", b =>

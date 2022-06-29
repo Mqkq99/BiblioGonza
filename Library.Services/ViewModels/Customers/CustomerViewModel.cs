@@ -1,4 +1,5 @@
 ﻿using Library.Services.ViewModels.Base;
+using Library.Services.ViewModels.Withdrawals;
 using System.ComponentModel.DataAnnotations;
 
 namespace Library.Services.ViewModels.Customers
@@ -19,6 +20,6 @@ namespace Library.Services.ViewModels.Customers
         [Required]
         public string Dni { get; set; }
 
-        public List<WithdrawalViewModel> Withdrawals { get; set; }
+        public List<WithdrawalListViewModel> Withdrawals { get; set; }
     }
 }

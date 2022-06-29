@@ -14,7 +14,7 @@ namespace LibraryApp.DAL.Model
 
         public string PhoneNumber { get; set; }
 
-        public virtual List<Withdrawal>  Withdrawals { get; set; }
+        public List<Withdrawal>  Withdrawals { get; set; }
 
 
     }

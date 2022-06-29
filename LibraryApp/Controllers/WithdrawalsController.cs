@@ -1,6 +1,6 @@
 ﻿using Library.Services.Interfaces;
 using Library.Services.ResultDTOs;
-using Library.Services.ViewModels;
+using Library.Services.ViewModels.Withdrawals;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApp.Controllers
@@ -25,6 +25,13 @@ namespace LibraryApp.Controllers
             ValueResult<string> id = _withdrawalService.Create(viewModel);
 
             return View(viewModel);
+        }
+
+        public IActionResult GetById(string id)
+        {
+            ValueResult<WithdrawalDetailViewModel> viewModel = _withdrawalService.GetById(id);
+
+            return View();
         }
     }
 }

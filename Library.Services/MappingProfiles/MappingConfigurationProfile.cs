@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Library.Services.ViewModels.Books;
 using Library.Services.ViewModels.Customers;
+using Library.Services.ViewModels.Withdrawals;
 using LibraryApp.DAL.Model;
 
 namespace Library.Services.MappingProfiles
@@ -22,10 +23,37 @@ namespace Library.Services.MappingProfiles
 
         public void ConfigureMappings()
         {
-            CreateMap<Customer, CustomerViewModel>().ReverseMap();
+            CreateMap<Customer, CustomerViewModel>()
+                .ForMember(
+                    dest => dest.Withdrawals,
+                    opt => opt.MapFrom(src => src.Withdrawals))
+                .ReverseMap();
+
             CreateMap<Customer, CustomerListViewModel>().ReverseMap();
+
             CreateMap<Book, BookViewModel>().ReverseMap();
+
             CreateMap<BookCopy, BookCopyViewModel>().ReverseMap();
+
+            CreateMap<Withdrawal, WithdrawalViewModel>().ReverseMap();
+
+            CreateMap<Withdrawal, WithdrawalDetailViewModel>()
+                .ForMember(
+                    dest => dest.BookCopyViewModel,
+                    opt => opt.MapFrom(src => src.BookCopy))
+                .ForMember(
+                    dest => dest.CustomerViewModel,
+                    opt => opt.MapFrom(src => src.Customer))
+                .ReverseMap();
+
+            CreateMap<Withdrawal, WithdrawalListViewModel>()
+                .ForMember(
+                    dest => dest.BookTitle,
+                    opt => opt.MapFrom(src => src.BookCopy.Book.Title))
+                .ForMember(
+                    dest => dest.CustomerId,
+                    opt => opt.MapFrom(src => src.Customer.Id))
+                .ReverseMap();
         }
     }
 }
