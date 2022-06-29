@@ -25,7 +25,6 @@ namespace LibraryApp.Controllers
             return RedirectToAction("Details", new { id });
         }
 
-        [Route("Details/{id}")]
         public IActionResult Details(string id)
         {
             var customer = _customerService.GetCustomerById(id);
@@ -33,21 +32,29 @@ namespace LibraryApp.Controllers
             return View("Details", customer);
         }
 
-        public IActionResult List()
-        {
-            var users = _customerService.getAllCustomer();
-          
-            return View("List",users);
-        }
+        //[HttpPost]
+        //public IActionResult Update(CustomerViewModel viewModel)
+        //{
+        //    CustomerViewModel customer = _customerService.Update(viewModel);
 
-        [HttpPost]
-        public IActionResult Delete(CustomerViewModel customer)
-        {
-            _customerService.Delete(customer.Id);
-            var users = _customerService.getAllCustomer();
+        //    return View("Details", customer);
+        //}
 
-            return View("ShowUsers", users);
-        }
+        //public IActionResult List()
+        //{
+        //    var users = _customerService.getAllCustomer();
+
+        //    return View("List",users);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Delete(CustomerViewModel customer)
+        //{
+        //    _customerService.Delete(customer.Id);
+        //    var users = _customerService.getAllCustomer();
+
+        //    return View("ShowUsers", users);
+        //}
 
 
     }

@@ -1,4 +1,5 @@
-﻿using Library.Services.Interfaces;
+﻿using AutoMapper;
+using Library.Services.Interfaces;
 using Library.Services.ViewModels;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
@@ -9,13 +10,19 @@ namespace Library.Services.Services
     {
         private LibraryDbContext _context { get; set; }
 
-        public CustomerService(LibraryDbContext context)
+        private IMapper _mapper { get; set; }
+
+        public CustomerService(
+            LibraryDbContext context,
+            IMapper mapper
+            )
         {
             _context = context != null ? context : throw new ArgumentNullException(nameof(context));
+            _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
         public string CreateCustomer(CustomerViewModel viewModel)
         {
-            Customer customer = new Customer() { Address = viewModel.Address, Name = viewModel.Name, PhoneNumber = viewModel.PhoneNumber, Id = viewModel.Id };
+            Customer customer = _mapper.Map<Customer>(viewModel);
 
             _context.Add(customer);
 
@@ -26,28 +33,43 @@ namespace Library.Services.Services
 
         public CustomerViewModel GetCustomerById(string id)
         {
-            var customer = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
-
-            CustomerViewModel viewModel = new CustomerViewModel() { Address = customer.Address, Name = customer.Name, PhoneNumber = customer.PhoneNumber };
+            var viewModel = _mapper.Map<CustomerViewModel>(_context.Customers.Where(x => x.Id == id).FirstOrDefault());
 
             return viewModel;
         }
-        public List<CustomerViewModel> getAllCustomer()
-        {
-            var list = _context.Customers;
-            List<CustomerViewModel> listUser = new List<CustomerViewModel>();
-            foreach (var customer in list)
-            {
-                listUser.Add(new CustomerViewModel() { Address = customer.Address, Name = customer.Name,Id=customer.Id});
-            }
 
-            return listUser;
+        public List<CustomerViewModel> getAll()
+        {
+            var customerList = _mapper.Map<List<CustomerViewModel>>(_context.Customers.Where(x => !x.Disabled));
+
+            return customerList;
         }
 
-        public void Delete(string id)
+        public CustomerViewModel Update(CustomerViewModel viewModel)
         {
+            Customer customer = _mapper.Map<Customer>(viewModel);
+
+            _context.Update(customer);
+            _context.SaveChanges();
+
+            return viewModel;
+        }
+
+        public bool Delete(string id)
+        {
+            var deleted = false;
+
             var customer = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
-            _context.Customers.Remove(customer);
+
+            if (customer != null)
+            {
+                _context.Customers.Remove(customer);
+                _context.SaveChanges();
+
+                deleted = true;
+            }
+
+            return deleted;
         }
 
     }

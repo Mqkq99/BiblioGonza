@@ -10,6 +10,6 @@ namespace Library.Services.ViewModels
 
         public string PhoneNumber { get; set; }
 
-
+        public List<WithdrawViewModel> Withdrawals { get; set; }
     }
 }

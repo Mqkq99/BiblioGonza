@@ -1,5 +1,6 @@
 using Library.Services.Interfaces;
 using Library.Services.Services;
+using Library.Services.ViewModels;
 using LibraryApp.DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ builder.Services.AddDbContext<LibraryDbContext>(
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(BookViewModel).Assembly);
 
 var app = builder.Build();
 
