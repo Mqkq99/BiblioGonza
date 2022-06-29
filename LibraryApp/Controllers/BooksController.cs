@@ -21,8 +21,24 @@ namespace LibraryApp.Controllers
         [HttpPost]
         public IActionResult Create(BookViewModel viewModel)
         {
-            _bookService.CreateBook(viewModel);
-            return View("Index");
-        }       
+            string id = _bookService.CreateBook(viewModel).ToString();
+
+            return RedirectToAction("Details", new { id });
+        }
+
+        
+        public IActionResult Details(string id)
+        {
+            var book = _bookService.GetBookById(id);
+
+            return View("Details", book);
+        }
+        public IActionResult List()
+        {
+            var books = new List<BookViewModel>();
+            
+            return View("List", books);
+        }
+
     }
 }

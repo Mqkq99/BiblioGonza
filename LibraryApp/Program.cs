@@ -14,6 +14,7 @@ builder.Services.AddDbContext<LibraryDbContext>(
 
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IBookCopyService,BookCopyService>();
 
 builder.Services.AddAutoMapper(typeof(BookViewModel).Assembly);
 

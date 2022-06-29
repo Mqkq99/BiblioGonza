@@ -8,5 +8,6 @@ namespace Library.Services.Interfaces
         BookViewModel GetBookById(string id);
 
         string CreateBook(BookViewModel viewModel);
+
     }
 }

@@ -27,6 +27,8 @@ namespace Library.Services.MappingProfiles
         public void ConfigureMappings()
         {
             CreateMap<Customer, CustomerViewModel>().ReverseMap();
+            CreateMap<Book, BookViewModel>().ReverseMap();
+            CreateMap<BookCopy, BookViewModel>().ReverseMap();
         }
     }
 }

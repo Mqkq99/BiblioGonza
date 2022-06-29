@@ -22,29 +22,26 @@ namespace Library.Services.Services
         {
             var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
 
-            var viewModel = book != null ? _mapper.Map<Book, BookViewModel>(book) : null;
+            BookViewModel viewModel = _mapper.Map<BookViewModel>(book);
 
             return viewModel;
         }
 
         public string CreateBook(BookViewModel viewModel)
         {
-            try
-            {
-                //var model = _mapper.Map<BookViewModel, Book>(viewModel);
 
-                Book model = new Book() { Title = viewModel.Title, Author = viewModel.Author };
+            Guid guid = Guid.NewGuid();
 
-                _context.Books.Add(model);
+            viewModel.Id = guid.ToString();
 
-                _context.SaveChanges();
+            Book model = _mapper.Map<Book>(viewModel);
 
-                return viewModel.Id;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            _context.Books.Add(model);
+
+            _context.SaveChanges();
+
+            return viewModel.Id;
+
         }
     }
 }
