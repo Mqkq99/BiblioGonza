@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Services.ViewModels
 {
-    internal class WithdrawViewModel
+    public class WithdrawViewModel
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

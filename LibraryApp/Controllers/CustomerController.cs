@@ -30,12 +30,12 @@ namespace LibraryApp.Controllers
             var customer = _customerService.GetCustomerById(id);
 
             return View("Details", customer);
-        } 
+        }
 
         //[HttpPost]
-        //public IActionResult Edit(CustomerViewModel viewModel)
+        //public IActionResult Update(CustomerViewModel viewModel)
         //{
-        //    var customer = _customerService.Edit(viewModel);
+        //    CustomerViewModel customer = _customerService.Update(viewModel);
 
         //    return View("Details", customer);
         //}

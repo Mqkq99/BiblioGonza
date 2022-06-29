@@ -38,24 +38,38 @@ namespace Library.Services.Services
             return viewModel;
         }
 
-        //public List<CustomerViewModel> getAllCustomers()
-        //{
-        //    var customerList = _mapper.Map<List<CustomerViewModel>>(_context.Customers);
-            
-
-
-        //    return listUser;
-        //}
-        
-        //public CustomerViewModel Edit(CustomerViewModel viewModel)
-        //{
-
-        //}
-
-        public void Delete(string id)
+        public List<CustomerViewModel> getAll()
         {
+            var customerList = _mapper.Map<List<CustomerViewModel>>(_context.Customers.Where(x => !x.Disabled));
+
+            return customerList;
+        }
+
+        public CustomerViewModel Update(CustomerViewModel viewModel)
+        {
+            Customer customer = _mapper.Map<Customer>(viewModel);
+
+            _context.Update(customer);
+            _context.SaveChanges();
+
+            return viewModel;
+        }
+
+        public bool Delete(string id)
+        {
+            var deleted = false;
+
             var customer = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
-            _context.Customers.Remove(customer);
+
+            if (customer != null)
+            {
+                _context.Customers.Remove(customer);
+                _context.SaveChanges();
+
+                deleted = true;
+            }
+
+            return deleted;
         }
 
     }

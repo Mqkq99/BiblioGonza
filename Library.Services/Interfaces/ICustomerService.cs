@@ -12,6 +12,8 @@ namespace Library.Services.Interfaces
 
         //List<CustomerViewModel> getAllCustomers();
 
-        void Delete(string id);
+        bool Delete(string id);
+
+        CustomerViewModel Update(CustomerViewModel viewModel);
     }
 }
