@@ -1,17 +1,16 @@
-﻿using System;
+﻿using Library.Services.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryApp.DAL.Model
+namespace Library.Services.ViewModels.Books
 {
-    public class Book : EntityBase
+    public class BookListViewModel : BaseViewModel
     {
         public string Author { get; set; }
 
         public string Title { get; set; }
-
-        public virtual ICollection<BookCopy> BookCopies { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Library.Services.Interfaces;
-using Library.Services.ViewModels;
+using Library.Services.ResultDTOs;
+using Library.Services.ViewModels.Books;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
 
@@ -18,30 +19,103 @@ namespace Library.Services.Services
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
 
-        public BookViewModel GetBookById(string id)
+        public ValueResult<BookViewModel> GetById(string id)
         {
-            var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
+            try
+            {
+                var book = _context.Books.Where(x => x.Id == id && !x.Disabled).FirstOrDefault();
 
-            BookViewModel viewModel = _mapper.Map<BookViewModel>(book);
+                if (book != null)
+                {
+                    var viewModel = _mapper.Map<Book, BookViewModel>(book);
 
-            return viewModel;
+                    return ValueResult<BookViewModel>.Ok(viewModel);
+                }
+                else
+                {
+                    return ValueResult<BookViewModel>.NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<BookViewModel>.Error(ex.Message);
+            }
         }
 
-        public string CreateBook(BookViewModel viewModel)
+        public ValueResult<string> Create(BookViewModel viewModel)
         {
+            try
+            {
+                var model = _mapper.Map<BookViewModel, Book>(viewModel);
 
-            Guid guid = Guid.NewGuid();
+                model.Id = Guid.NewGuid().ToString();
 
-            viewModel.Id = guid.ToString();
+                _context.Books.Add(model);
 
-            Book model = _mapper.Map<Book>(viewModel);
+                _context.SaveChanges();
 
-            _context.Books.Add(model);
+                return ValueResult<string>.Ok(viewModel.Id);
+            }
+            catch(Exception ex)
+            {
+                return ValueResult<string>.Error(ex.Message);
+            }
+        }
 
-            _context.SaveChanges();
+        public ValueResult<List<BookListViewModel>> GetAll()
+        {
+            try
+            {
+                List<BookListViewModel> customerList = _mapper.Map<List<BookListViewModel>>(_context.Books.Where(x => !x.Disabled));
 
-            return viewModel.Id;
+                return ValueResult<List<BookListViewModel>>.Ok(customerList);
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<List<BookListViewModel>>.Error(ex.Message);
+            }
+        }
 
+        public ValueResult<BookViewModel> Update(BookViewModel viewModel)
+        {
+            try
+            {
+                Book book = _mapper.Map<Book>(viewModel);
+
+                _context.Update(book);
+                _context.SaveChanges();
+
+                return ValueResult<BookViewModel>.Ok(viewModel); ;
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<BookViewModel>.Error(ex.Message);
+            }
+        }
+
+        public ValueResult<bool> Delete(string id)
+        {
+            try
+            {
+                var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
+
+                if (book != null)
+                {
+                    book.Disabled = true;
+                    _context.Update(book);
+                    _context.SaveChanges();
+
+                    return ValueResult<bool>.Ok(true);
+                }
+                else
+                {
+                    return ValueResult<bool>.NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<bool>.Error(ex.Message);
+            }
         }
     }
 }

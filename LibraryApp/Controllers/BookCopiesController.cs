@@ -1,31 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Library.Services.Interfaces;
 using Library.Services.ViewModels;
+using Library.Services.ViewModels.Books;
+using Library.Services.ResultDTOs;
+
 namespace LibraryApp.Controllers
 {
-    public class BookCopyController : Controller
+    public class BookCopiesController : Controller
     {
         private readonly IBookCopyService _bookService;
 
-        public BookCopyController(IBookCopyService bookService)
+        public BookCopiesController(IBookCopyService bookService)
         {
             _bookService = bookService;
         }
         public IActionResult Create(string id)
         {
-            BookViewModel viewModel = _bookService.GetBookById(id);
-           BookCopyViewModel viewModel1 = new BookCopyViewModel() { Book=viewModel};
-            return View("Create", viewModel1);
+            ValueResult<BookCopyViewModel> viewModel = _bookService.GetById(id);
+
+            return View("Create", viewModel);
         }
         public IActionResult Details(BookViewModel viewModel)
         {
             var book = new BookViewModel { Id = "ASDASD" };
 
-            string id = new BookCopyViewModel { Id = "XDXDXD" ,Book=book }.Book.Id;
-            return RedirectToAction("Details", "Books", new { id  });
+            return RedirectToAction("Details", "Books", new { });
         }
-
-
-
     }
 }

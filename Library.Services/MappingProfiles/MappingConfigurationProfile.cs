@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
-using Library.Services.ViewModels;
+using Library.Services.ViewModels.Books;
+using Library.Services.ViewModels.Customers;
 using LibraryApp.DAL.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services.MappingProfiles
 {
@@ -27,8 +23,9 @@ namespace Library.Services.MappingProfiles
         public void ConfigureMappings()
         {
             CreateMap<Customer, CustomerViewModel>().ReverseMap();
+            CreateMap<Customer, CustomerListViewModel>().ReverseMap();
             CreateMap<Book, BookViewModel>().ReverseMap();
-            CreateMap<BookCopy, BookViewModel>().ReverseMap();
+            CreateMap<BookCopy, BookCopyViewModel>().ReverseMap();
         }
     }
 }

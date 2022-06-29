@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Library.Services.Interfaces;
+using Library.Services.ResultDTOs;
 using Library.Services.ViewModels;
+using Library.Services.ViewModels.Books;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
 namespace Library.Services.Services
@@ -16,7 +18,7 @@ namespace Library.Services.Services
             _context = context != null ? context : throw new ArgumentNullException(nameof(context));
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
-        public string CreateBookCopy(BookCopyViewModel viewModel)
+        public ValueResult<string> Create(BookCopyViewModel viewModel)
         {
 
             Guid guid = Guid.NewGuid();
@@ -29,17 +31,17 @@ namespace Library.Services.Services
 
             _context.SaveChanges();
 
-            return viewModel.Id;
+            return ValueResult<string>.Ok(viewModel.Id);
 
         }
 
-        public BookCopyViewModel GetCopyBookById(string id)
+        public ValueResult<BookCopyViewModel> GetById(string id)
         {
             var bookCopy = _context.BookCopies.Where(x => x.Id == id).FirstOrDefault();
 
             BookCopyViewModel viewModel = _mapper.Map<BookCopyViewModel>(bookCopy);
 
-            return viewModel;
+            return ValueResult<BookCopyViewModel>.Ok(viewModel);
         }
 
         public BookViewModel GetBookById(string id)

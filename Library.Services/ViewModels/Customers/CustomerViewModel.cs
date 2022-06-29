@@ -1,6 +1,6 @@
-﻿
+﻿using Library.Services.ViewModels.Base;
 
-namespace Library.Services.ViewModels
+namespace Library.Services.ViewModels.Customers
 {
     public class CustomerViewModel : BaseViewModel
     {
@@ -10,6 +10,6 @@ namespace Library.Services.ViewModels
 
         public string PhoneNumber { get; set; }
 
-        public List<WithdrawViewModel> Withdrawals { get; set; }
+        public List<WithdrawalViewModel> Withdrawals { get; set; }
     }
 }
