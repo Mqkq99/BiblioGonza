@@ -1,4 +1,4 @@
-﻿@model Library.Services.ViewModels.Customers.CustomerViewModel
+﻿@model Library.Services.ViewModels.Books.BookViewModel
 @{
     Layout = "_Layout";
 }
@@ -17,23 +17,17 @@
             <br />
         <form asp-action="UpdateData" method="post">
             <div class="myforma">
-                <label asp-for="Address">Direccion:</label>
-                <input style="margin-left:18px" asp-for="Address" />
+                <label asp-for="Author">Autor:</label>
+                <input style="margin-left:18px" asp-for="Author" />
             </div>
            
             <div  class="myforma">
-                <label asp-for="Name" class="" >Nombre:</label>
-                <input asp-for="Name" required maxlength="50"/>
+                <label asp-for="Title" class="" >Titulo:</label>
+                <input asp-for="Title" required maxlength="50"/>
                 
             </div>            
-             <div  class="myforma">
-                <label asp-for="PhoneNumber" class="" >Telefono:</label>
-                <input asp-for="PhoneNumber" required maxlength="15" />
-            </div>        
-              <div  class="myforma">
-                <label asp-for="Id" class="" >DNI:</label>
-                <input asp-for="Id" required maxlength="12" />
-            </div>        
+                
+             
             <div>
                <p></p>
             <button type="submit">Guardar cambios</button>
@@ -53,3 +47,4 @@
 
 </body>
 </html>
+

@@ -117,5 +117,19 @@ namespace Library.Services.Services
                 return ValueResult<bool>.Error(ex.Message);
             }
         }
+
+        public ValueResult<List<BookViewModel>> getAll()
+        {
+            try
+            {
+                List<BookViewModel> bookList = _mapper.Map<List<BookViewModel>>(_context.Books.Where(x => !x.Disabled));
+
+                return ValueResult<List<BookViewModel>>.Ok(bookList);
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<List<BookViewModel>>.Error(ex.Message);
+            }
+        }
     }
 }

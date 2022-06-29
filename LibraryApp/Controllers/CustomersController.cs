@@ -51,7 +51,7 @@ namespace LibraryApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(CustomerViewModel viewModel)
+        public IActionResult UpdateData(CustomerViewModel viewModel)
         {
             ValueResult<CustomerViewModel> customer = _customerService.Update(viewModel);
 
