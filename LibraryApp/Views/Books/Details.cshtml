@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Library.Services.ViewModels.BookViewModel
 @{
+    Layout = "_Layout";
+
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>USUARIO CREADO</h1>
+    <div class="container">
+        <p>Nombre: @Model.Author</p>
+        <p>Direccion: @Model.Title</p>
+        <button class="btn-danger ">crear reserva </button>
+        <button> <a class="btn-dark" asp-controller="BookCopy" asp-action="Create">Agregar Copias</a></button>
+        @if (Model.Copies.Count > 0)
+        {
+            <table>
+                @foreach (var item in Model.Copies)
+                {
+                    <li>@item.Edition cantidad de coipias: @item.Quantity</li>
+                }
+            </table>
+
+        }
+
+
+    </div>
+    <div>
+
+        <h4>Historial de reservas</h4>
+        <table>
+            <li></li>
+        </table>
+    </div>
+</body>
+</html>

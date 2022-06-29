@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Library.Services.ViewModels
 {
-    internal class BookCopyViewModel
+    public class BookCopyViewModel
     {
         public BookViewModel Book { get; set; }
+
+        public string Edition { get; set; }
+
+        public int Quantity { get; set; }
     }
 }

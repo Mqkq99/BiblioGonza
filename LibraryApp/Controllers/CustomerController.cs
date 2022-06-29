@@ -25,7 +25,7 @@ namespace LibraryApp.Controllers
             return RedirectToAction("Details", new { id });
         }
 
-        [Route("Details/{id}")]
+        [Route("Customer/Details/{id}")]
         public IActionResult Details(string id)
         {
             var customer = _customerService.GetCustomerById(id);

@@ -14,6 +14,5 @@ namespace LibraryApp.DAL.Model
 
         public int Quantity { get; set; }
 
-        public virtual List<Withdrawal> Withdrawals { get; set; }
     }
 }
