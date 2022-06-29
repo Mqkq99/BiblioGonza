@@ -31,6 +31,10 @@ namespace LibraryApp.Controllers
 
             return View("Details", customer);
         }
+        //public IActionResult Details()
+        //{
+        //    return View("Details");
+        //}
 
         //[HttpPost]
         //public IActionResult Update(CustomerViewModel viewModel)
@@ -62,10 +66,7 @@ namespace LibraryApp.Controllers
             return View("Update");
         }
 
-        public IActionResult Details()
-        {
-            return View("Details");
-        }
+        
 
         public IActionResult Cancel(CustomerViewModel customer)
         {
