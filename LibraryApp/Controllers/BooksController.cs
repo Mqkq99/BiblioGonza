@@ -51,7 +51,5 @@ namespace LibraryApp.Controllers
 
             return View("Update",book.Result);
         }
-
-
     }
 }
