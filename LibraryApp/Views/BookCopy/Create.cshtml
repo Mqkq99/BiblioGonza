@@ -1,0 +1,46 @@
+﻿@model Library.Services.ViewModels.BookCopyViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/site.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+
+    <div class="myform fondo">
+        <br />
+        <h2>Crear copia de libro @Model.Book.Title </h2>
+        <h5> @Model.Book.Author </h5>
+
+        <br />
+        <form asp-action="Details" asp-controller="BookCopy" asp method="post">
+            <div class="myforma">
+                <label asp-for="Edition">Edicion:</label>
+                <input style="margin-left:18px" asp-for="Edition" required/>
+            </div>
+
+            <div class="myforma">
+                <label asp-for="Quantity" >Cantidad:</label>
+                <input asp-for="Quantity" type="number" required/>
+            </div>
+            <div>
+                <p></p>
+                <button type="submit" >Submit form</button>
+                <p></p>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="book">
+        <div class="Title">
+            <p></p>
+        </div>
+
+
+
+    </div>
+</body>
+</html>
