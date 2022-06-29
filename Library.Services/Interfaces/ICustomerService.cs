@@ -10,7 +10,10 @@ namespace Library.Services.Interfaces
 
         string CreateCustomer(CustomerViewModel viewModel);
 
-        List<CustomerViewModel> getAllCustomer();
-        void Delete(string id);
+        //List<CustomerViewModel> getAllCustomers();
+
+        bool Delete(string id);
+
+        CustomerViewModel Update(CustomerViewModel viewModel);
     }
 }
