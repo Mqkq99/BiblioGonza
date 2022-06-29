@@ -15,7 +15,7 @@
         <br />
             <h2 >Create Customer</h2>
             <br />
-        <form asp-action="UpdateData" method="post">
+        <form asp-action="UpdateData" method="post" asp-route-id=@Model.Id>
             <div class="myforma">
                 <label asp-for="Author">Autor:</label>
                 <input style="margin-left:18px" asp-for="Author" />
@@ -24,9 +24,9 @@
             <div  class="myforma">
                 <label asp-for="Title" class="" >Titulo:</label>
                 <input asp-for="Title" required maxlength="50"/>
-                
-            </div>            
-                
+            </div>    
+                     
+              
              
             <div>
                <p></p>

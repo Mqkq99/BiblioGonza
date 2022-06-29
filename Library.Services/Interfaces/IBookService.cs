@@ -10,5 +10,7 @@ namespace Library.Services.Interfaces
 
         ValueResult<string> Create(BookViewModel viewModel);
         ValueResult<List<BookViewModel>> getAll();
+        ValueResult<BookViewModel> Update(BookViewModel viewModel);
+        ValueResult<bool> Delete(string id);
     }
 }
