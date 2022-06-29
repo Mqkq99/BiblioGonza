@@ -65,7 +65,7 @@ namespace LibraryApp.Controllers
             return View("List", users.Result);
         }
 
-        [HttpPost]
+        [Route("Customer/Delete/{id}")]
         public IActionResult Delete(string id)
         {
             _customerService.Delete(id);

@@ -45,11 +45,27 @@ namespace LibraryApp.Controllers
 
             return View("List", users.Result);
         }
-        public IActionResult Update(String id)
+        public IActionResult Update(String id )
         {
             ValueResult<BookViewModel> book = _bookService.GetById(id);
 
             return View("Update",book.Result);
         }
+        public IActionResult UpdateData(BookViewModel viewModel)
+        {
+            ValueResult<BookViewModel> book = _bookService.Update(viewModel);
+
+            return View("Details", book.Result);
+        }
+
+        [Route("Books/Delete/{id}")]
+        public IActionResult Delete(string id)
+        {
+            _bookService.Delete(id);
+            var users = _bookService.getAll();
+
+            return View("List", users.Result);
+        }
+
     }
 }
