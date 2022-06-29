@@ -12,7 +12,9 @@ namespace LibraryApp.DAL.Model
 
         public string Edition { get; set; }
 
-        public int Quantity { get; set; }
+        public int TotalQuantity { get; set; }
+        
+        public int AvailableQuantity { get; set; }
 
     }
 }

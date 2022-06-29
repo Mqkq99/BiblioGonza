@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Library.Services.Interfaces;
 using Library.Services.ResultDTOs;
 using Library.Services.ViewModels;
 using LibraryApp.DAL;
@@ -6,7 +7,7 @@ using LibraryApp.DAL.Model;
 
 namespace Library.Services.Services
 {
-    public class WithdrawalService
+    public class WithdrawalService : IWithdrawalService
     {
         private LibraryDbContext _context { get; set; }
 
@@ -46,7 +47,23 @@ namespace Library.Services.Services
         {
             try
             {
+                viewModel.StartDate = DateTime.Now;
+                viewModel.EndDate = DateTime.Now.AddDays(15);
+
+                var customer = _context.Customers.Where(x => x.Id == viewModel.CustomerId && !x.Disabled).FirstOrDefault();
+
+                if(customer == null)
+                    return ValueResult<string>.Error("Error creando la reserva, el usuario seleccionado es inexistente");
+
+                var bookCopy = _context.BookCopies.Where(x => x.Id == viewModel.BookCopyId && !x.Disabled && x.TotalQuantity > 0).FirstOrDefault();
+
+                if (bookCopy == null)
+                    return ValueResult<string>.Error("Error creando la reserva, la copia del libro seleccionado es inexistente o no tiene un ejemplar disponible");
+
                 var withdrawal = _mapper.Map<Withdrawal>(viewModel);
+
+                withdrawal.Customer = customer;
+                withdrawal.BookCopy = bookCopy;
 
                 _context.Add(withdrawal);
 
