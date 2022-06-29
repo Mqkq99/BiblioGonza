@@ -26,7 +26,7 @@ namespace LibraryApp.Controllers
             return RedirectToAction("Details", new { id });
         }
 
-        [Route("Books/Details/{id}")]
+        
         public IActionResult Details(string id)
         {
             var book = _bookService.GetBookById(id);

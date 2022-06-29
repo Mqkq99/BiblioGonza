@@ -1,7 +1,5 @@
 ﻿@model Library.Services.ViewModels.BookCopyViewModel
-@{
-    Layout = "_Layout";
-}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +11,11 @@
 
     <div class="myform fondo">
         <br />
-        <h2>Crear copia de libro  </h2>
-        <h5>  </h5>
+        <h2>Crear copia de libro @Model.Book.Title </h2>
+        <h5> @Model.Book.Author </h5>
 
         <br />
-        <form asp-action="Create" asp-controller="BookCopy" method="post">
+        <form asp-action="Details" asp-controller="BookCopy" asp method="post">
             <div class="myforma">
                 <label asp-for="Edition">Edicion:</label>
                 <input style="margin-left:18px" asp-for="Edition" required/>

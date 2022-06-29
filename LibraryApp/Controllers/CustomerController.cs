@@ -31,6 +31,12 @@ namespace LibraryApp.Controllers
             return View("Details", customer);
         }
 
+        public IActionResult List()
+        {
+            var users = _customerService.getAll();
+
+            return View("List", users);
+        }
         //[HttpPost]
         //public IActionResult Update(CustomerViewModel viewModel)
         //{
@@ -39,12 +45,7 @@ namespace LibraryApp.Controllers
         //    return View("Details", customer);
         //}
 
-        public IActionResult List()
-        {
-           var users = _customerService.getAll();
 
-           return View("List",users);
-        }
 
         //[HttpPost]
         //public IActionResult Delete(CustomerViewModel customer)

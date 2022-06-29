@@ -12,12 +12,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>USUARIO CREADO</h1>
+   
     <div class="container">
         <p>Nombre: @Model.Author</p>
         <p>Direccion: @Model.Title</p>
         <button class="btn-danger ">crear reserva </button>
-        <button> <a class="btn-dark" asp-controller="BookCopy" asp-action="Create">Agregar Copias</a></button>
+        <button> <a class="btn-dark" asp-controller="BookCopy" asp-action="Create" asp-route-id=@Model.Id>Agregar Copias</a></button>
   
 
 

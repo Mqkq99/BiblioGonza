@@ -22,7 +22,7 @@ namespace Library.Services.Services
         {
             var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
 
-            BookViewModel viewModel = new BookViewModel() { Author = book.Author, Id = book.Id, Title = book.Title };
+            BookViewModel viewModel = _mapper.Map<BookViewModel>(book);
 
             return viewModel;
         }
@@ -34,7 +34,7 @@ namespace Library.Services.Services
 
             viewModel.Id = guid.ToString();
 
-            Book model = new Book() { Title = viewModel.Title, Author = viewModel.Author, Id = viewModel.Id };
+            Book model = _mapper.Map<Book>(viewModel);
 
             _context.Books.Add(model);
 

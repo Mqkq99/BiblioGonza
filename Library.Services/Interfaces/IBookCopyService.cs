@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Library.Services.ViewModels;
 
 namespace Library.Services.Interfaces
 {
-    internal interface IBookCopyService
+    public interface IBookCopyService
     {
-        IBookCopyService GetBookById(string id);
-
+        BookCopyViewModel GetCopyBookById(string id);
+        string CreateBookCopy(BookCopyViewModel viewModel);
+        BookViewModel GetBookById(string id);
     }
 }
