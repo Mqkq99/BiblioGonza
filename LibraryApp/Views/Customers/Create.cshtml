@@ -5,50 +5,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel ="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/site.css">
     <meta name="viewport" content="width=device-width" />
     <title>Form</title>
 </head>
 <body>
-    
-    <div class="myform fondo" >
+    <div class="myform fondo">
         <br />
-            <h2 >Create Customer</h2>
-            <br />
-        <form asp-action="Create" method="post">
+        <h2>Create Customer</h2>
+        <br />
+        <form asp-action="Create" method="post" onsubmit="return validateCustomer()">
             <div class="myforma">
-                <label asp-for="Address">Direccion:</label>
+                <label asp-for="Address">Address:</label>
                 <input style="margin-left:18px" asp-for="Address" required maxlength="60" />
             </div>
-           
-            <div  class="myforma">
-                <label asp-for="Name" class="" >Nombre:</label>
-                <input asp-for="Name" required maxlength="50" required maxlenght="50"/>
-                
-            </div>            
-             <div  class="myforma">
-                <label asp-for="PhoneNumber" class="" >Telefono:</label>
-                <input asp-for="PhoneNumber" required maxlength="15" type="number" min="0"/>
-            </div>        
-              <div  class="myforma">
-                <label asp-for="Id" class="" >DNI:</label>
-                <input asp-for="Id" required maxlength="9" type="number" />
-            </div>        
+
+            <div class="myforma">
+                <label asp-for="Name" class="">Name:</label>
+                <input asp-for="Name" required maxlength="50" required maxlenght="50" />
+
+            </div>
+            <div class="myforma">
+                <label asp-for="PhoneNumber" class="">Phone:</label>
+                <input asp-for="PhoneNumber" required maxlength="15" min="0" />
+            </div>
+            <div class="myforma">
+                <label asp-for="Id">DNI:</label>
+                <input asp-for="Id" id="id" required maxlength="9" />
+            </div>
             <div>
-               <p></p>
-            <button type="submit">Crear customer</button>
-             <p></p>
-        </div>
+                <p></p>
+                <input type="submit" id="submitCustomer" value="Create Customer">
+                <p></p>
+            </div>
 
         </form>
     </div>
-    
-     <div class="book">
-         <div class="Title" >
-           <p></p>
-         </div>
-              </div>
-
-     <a type="button" class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index" >Volver</a>
+    <div class="book">
+        <div class="Title">
+            <p></p>
+        </div>
+    </div>
+    <a type="button" class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Back</a>
+    <script src="~/js/Customer.js"></script>
 </body>
+    <script>
+            function validateDni() {
+                var dni = document.getElementById("id").value
+                if ((dni.length < 10 && dni.length > 6) && !isNaN(dni)) {
+                    return true
+                }
+                else {
+                    alert("ERONEO");
+                    return false
+                }
+            }
+            function validateCustomer() {
+                if (validateDni()) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        </script>
 </html>
