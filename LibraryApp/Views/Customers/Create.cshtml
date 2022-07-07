@@ -14,8 +14,6 @@
         <br />
         <h2>Create Customer</h2>
         <br />
-
-     
         <form asp-action="Create" method="post" onsubmit="return validateCustomer()">
             <div class="myforma">
                 <label asp-for="Address">Address:</label>
@@ -43,17 +41,15 @@
 
         </form>
     </div>
-
     <div class="book">
         <div class="Title">
             <p></p>
         </div>
     </div>
-
     <a type="button" class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Back</a>
     <script src="~/js/Customer.js"></script>
-
-       <script>
+</body>
+    <script>
             function validateDni() {
                 var dni = document.getElementById("id").value
                 if ((dni.length < 10 && dni.length > 6) && !isNaN(dni)) {
@@ -72,6 +68,4 @@
                 }
             }
         </script>
-</body>
-
 </html>
