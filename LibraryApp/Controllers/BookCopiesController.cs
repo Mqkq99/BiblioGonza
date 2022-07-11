@@ -21,11 +21,17 @@ namespace LibraryApp.Controllers
             return View("Create", viewModel.Result);
         }
         [HttpPost]
-        public IActionResult Details(BookViewModel viewModel)
+        public IActionResult Create(BookCopyCreateViewModel viewModel, string bookId)
         {
-           
+            _bookCopyService.Create(new BookCopyCreateViewModel()
+            {
+                Edition = viewModel.Edition,
+                TotalQuantity = viewModel.TotalQuantity,
+                
+                
+            },bookId);
 
-            return RedirectToAction("Details", "Books", new { });
+            return RedirectToAction("Details", "Books",  new{id = bookId });
         }
     }
 }

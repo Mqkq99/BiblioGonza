@@ -9,7 +9,7 @@ namespace Library.Services.Interfaces
 
         ValueResult<CustomerViewModel> GetById(string id);
 
-        ValueResult<string> Create(CustomerViewModel viewModel);
+        ValueResult<string> Create(CustomerCreateViewModel viewModel);
 
         ValueResult<List<CustomerListViewModel>> getAll();
 

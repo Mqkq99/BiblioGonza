@@ -19,8 +19,12 @@ namespace LibraryApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CustomerViewModel viewModel)
+        public IActionResult Create(CustomerCreateViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Error");
+            }
             ValueResult<string> result = _customerService.Create(viewModel);
 
             if (result.Success)
@@ -37,6 +41,10 @@ namespace LibraryApp.Controllers
 
         public IActionResult Details(string id)
         {
+            if(id == null)
+            {
+                return View("Error");
+            }
             var customer = _customerService.GetById(id);
 
             return View("Details", customer.Result);
