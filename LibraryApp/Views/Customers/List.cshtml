@@ -4,14 +4,18 @@
 }
 @if (@Model.Any())
 {
-    
-
-<h1>Index</h1>
+    <br>
+<br>
+<h1>Lista de Usuarios</h1>
+<br>
 
 <p>
-    <a asp-page="/Create">Create New</a>
+    <a class="btn btn-primary costado" asp-page="/Create">Crear Usuario</a>
 </p>
-<table class="table">
+<hr>
+<br>
+<br>
+<table class="table" >
     <thead>
         <tr>
             <th>
@@ -24,7 +28,7 @@
                 Direccion
             </th>
             <th>
-                Telefono
+                Teléfono
             </th>
         </tr>
     </thead>
@@ -46,7 +50,7 @@
             <td>
                 <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id=@item.Id >Editar</a>
                 <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Details" asp-route-id=@item.Id >Detalles</a>
-                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Delete" asp-route-id=@item.Id >Delete</a>
+                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Delete" asp-route-id=@item.Id >Eliminar</a>
             </td>
         </tr>
 }

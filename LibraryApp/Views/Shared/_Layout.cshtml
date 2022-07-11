@@ -24,12 +24,12 @@
         </div>
         <div class="sidebar">
             <div class="profile">
-                <h3>Administrador</h3>
+                <h3> <img id="iconoIzquierdo" src="~/Images/libro.png" /> Menú</h3>
             </div>
             <ul>
                 <li>
                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
-                        <span class="icon"><i class="fas fa-desktop"></i></span>
+                        <span class="icon"><i class="fa-solid fa-house"></i></span>
                         <span class="item">Inicio</span>
                     </a>
                 </li>
@@ -45,25 +45,27 @@
                         <span class="item">Crear Cliente</span>
                         </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="List">
-                            <span class="icon"><i class="fa-solid fa-list"></i></span>
-                        <span class="item">Lista de usuarios</span>
-                        </a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Books" asp-action="List">
                       <span class="icon"><i class="fa-solid fa-list"></i></span>
                         <span class="item">Lista de Libros</span>
                         </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="List">
+                            <span class="icon"><i class="fa-solid fa-address-book"></i></span>
+                        <span class="item">Lista de Usuarios</span>
+                        </a>
+                </li>
+
             </ul>
         </div>
     </div>
 
 
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
