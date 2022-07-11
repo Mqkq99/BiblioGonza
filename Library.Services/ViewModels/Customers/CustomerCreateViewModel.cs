@@ -1,10 +1,14 @@
 ﻿using Library.Services.ViewModels.Base;
-using Library.Services.ViewModels.Withdrawals;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Library.Services.ViewModels.Customers
 {
-    public class CustomerViewModel : BaseViewModel
+    public class CustomerCreateViewModel:BaseViewModel
     {
         [Required]
         [StringLength(10, MinimumLength = 6)]
@@ -15,10 +19,9 @@ namespace Library.Services.ViewModels.Customers
 
         [StringLength(50)]
         public string Address { get; set; }
-       
+
         [StringLength(15, MinimumLength = 8)]
         public string PhoneNumber { get; set; }
 
-        public List<WithdrawalListViewModel>? Withdrawals   { get; set; }
     }
 }

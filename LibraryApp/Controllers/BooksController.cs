@@ -33,7 +33,8 @@ namespace LibraryApp.Controllers
             }
             return View("Create", viewModel);
         }
-        public IActionResult Details(String id)
+        //No esta llegando las copias al libro en el servicio. Fix
+        public IActionResult Details(string id)
         {
             var book = _bookService.GetById(id);
 

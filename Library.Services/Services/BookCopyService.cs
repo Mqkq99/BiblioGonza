@@ -6,6 +6,8 @@ using Library.Services.ViewModels.BookCopies;
 using Library.Services.ViewModels.Books;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
+using Microsoft.EntityFrameworkCore;
+
 namespace Library.Services.Services
 {
     public class BookCopyService : IBookCopyService
@@ -20,14 +22,22 @@ namespace Library.Services.Services
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
         }
 
-        public ValueResult<string> Create(BookCopyViewModel viewModel)
+        public ValueResult<string> Create(BookCopyCreateViewModel viewModel, string bookId)
         {
+            var book = GetBookById(bookId);
+
 
             Guid guid = Guid.NewGuid();
 
             viewModel.Id = guid.ToString();
 
             BookCopy model = _mapper.Map<BookCopy>(viewModel);
+
+            model.Book = book;
+
+            book.BookCopies.Add(model);
+
+            model.AvailableQuantity = model.TotalQuantity; 
 
             _context.BookCopies.Add(model);
 
@@ -46,7 +56,7 @@ namespace Library.Services.Services
             return ValueResult<BookCopyCreateViewModel>.Ok(viewModel);
         }
 
-        private BookViewModel GetBookById(string id)
+        private BookViewModel GetBookViewModelById(string id)
         {
             var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
 
@@ -57,13 +67,24 @@ namespace Library.Services.Services
 
         public ValueResult<BookCopyCreateViewModel> CreateInizialization(string id)
         {
-            var book = GetBookById(id);
+            var book = GetBookViewModelById(id);
             var copy = new BookCopyCreateViewModel()
             {
                 Book = book
             };
             return ValueResult<BookCopyCreateViewModel>.Ok(copy);
-            
+
+        }
+
+        private Book GetBookById(string id)
+        {
+            var book = _context.Books
+                .Include(x => x.BookCopies)
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+
+
+            return book;
         }
     }
 }

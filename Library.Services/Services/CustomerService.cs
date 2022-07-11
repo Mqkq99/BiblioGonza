@@ -43,11 +43,13 @@ namespace Library.Services.Services
             }
         }
 
-        public ValueResult<string> Create(CustomerViewModel viewModel)
+        public ValueResult<string> Create(CustomerCreateViewModel viewModel)
         {
+            var viewModelReady= _mapper.Map<CustomerViewModel>(viewModel);
+            
             try
             {
-                Customer customer = _mapper.Map<Customer>(viewModel);
+                Customer customer = _mapper.Map<Customer>(viewModelReady);
 
                 _context.Add(customer);
 
@@ -59,7 +61,7 @@ namespace Library.Services.Services
             {
                 return ValueResult<string>.Error(ex.Message);
             }
-        }
+            }
 
         public ValueResult<List<CustomerListViewModel>> getAll()
         {

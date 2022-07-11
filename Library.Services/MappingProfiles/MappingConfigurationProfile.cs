@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Library.Services.ViewModels.Books;
+using Library.Services.ViewModels.BookCopies;
 using Library.Services.ViewModels.Customers;
 using Library.Services.ViewModels.Withdrawals;
 using LibraryApp.DAL.Model;
@@ -31,6 +32,10 @@ namespace Library.Services.MappingProfiles
 
             CreateMap<Customer, CustomerListViewModel>().ReverseMap();
 
+            CreateMap<Customer, CustomerCreateViewModel>().ReverseMap();
+
+            CreateMap<CustomerViewModel, CustomerCreateViewModel>().ReverseMap();
+
             CreateMap<Book, BookViewModel>().ReverseMap();
 
             CreateMap<BookCopy, BookCopyViewModel>().ReverseMap();
@@ -54,6 +59,7 @@ namespace Library.Services.MappingProfiles
                     dest => dest.CustomerId,
                     opt => opt.MapFrom(src => src.Customer.Id))
                 .ReverseMap();
+            CreateMap<BookCopy, BookCopyCreateViewModel>().ReverseMap();
         }
     }
 }

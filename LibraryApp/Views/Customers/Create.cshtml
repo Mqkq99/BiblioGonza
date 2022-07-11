@@ -1,4 +1,4 @@
-﻿@model Library.Services.ViewModels.Customers.CustomerViewModel
+﻿@model Library.Services.ViewModels.Customers.CustomerCreateViewModel
 @{
     Layout = "_Layout";
 }
@@ -16,21 +16,21 @@
         <br />
         <form asp-action="Create" method="post" onsubmit="return validateCustomer()">
             <div class="myforma">
-                <label asp-for="Address">Address:</label>
+                <label >Address:</label>
                 <input style="margin-left:18px" asp-for="Address" required maxlength="60" />
             </div>
 
             <div class="myforma">
-                <label asp-for="Name" class="">Name:</label>
+                <label  class="">Name:</label>
                 <input asp-for="Name" required maxlength="50" required maxlenght="50" />
 
             </div>
             <div class="myforma">
-                <label asp-for="PhoneNumber" class="">Phone:</label>
+                <label  class="">Phone:</label>
                 <input asp-for="PhoneNumber" required maxlength="15" min="0" />
             </div>
             <div class="myforma">
-                <label asp-for="Id">DNI:</label>
+                <label >DNI:</label>
                 <input asp-for="Id" id="id" required maxlength="9" />
             </div>
             <div>
