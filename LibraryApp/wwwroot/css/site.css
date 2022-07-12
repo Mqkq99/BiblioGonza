@@ -165,3 +165,28 @@ h1 {
     
 
 }
+
+.abajoizq{
+    position:absolute;
+    bottom: 120px;
+    left: 480px;
+
+}
+
+#historialRes {
+    position: absolute;
+    bottom: 240px;
+    left: 480px;
+}
+
+#detallesUsuario{
+    position:relative;
+    left: 448px;
+
+}
+
+#botonEdicionUsuario{
+    position: relative;
+    left: 460px;
+    
+}

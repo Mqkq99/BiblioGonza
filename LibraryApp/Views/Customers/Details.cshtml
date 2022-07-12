@@ -12,22 +12,62 @@
     <title>Document</title>
 </head>
 <body >
-    <h1 >USUARIO CREADO</h1>
-    <div class="container">
-        <p>Nombre: @Model.Name</p>
-        <p>Direccion: @Model.Address</p>
-        <p> Telefono : @Model.PhoneNumber</p>
-        <p> DNI : @Model.Id </p>
-        <button class="btn-danger ">crear reserva </button>
-    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1 >Detalles del Usuario</h1>
+    <br />
+    <br />
+    <br />
+
+    <table id="detallesUsuario">
+        <thead>
+        <tr>
+            <th style="padding:0 15px 0 15px;"> 
+            Nombre   
+            </th>
+            <th style="padding:0 15px 0 15px;">
+                Direccion    
+            </th>
+
+             <th style="padding:0 15px 0 15px;">
+                 Telefono    
+            </th>
+
+             <th style="padding:0 15px 0 15px;">
+                 DNI    
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td style="padding:0 15px 0 15px;">@Model.Name  </td>
+            <td style="padding:0 15px 0 15px;">@Model.Address</td>
+            <td style="padding:0 15px 0 15px;">@Model.PhoneNumber</td>
+            <td style="padding:0 15px 0 15px;">@Model.Id</td>
+            </tr>
+        </tbody>
+    </table>
+      <br />
+        <br />
+    <a type="button" id="botonEdicionUsuario" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id=@Model.Id >Editar datos</a>
+     <br />
+    <br />
+      <br />
     <div>
 
-        <h4>Historial de reservas</h4>
+        <h4 id="historialRes">Historial de reservas</h4>
+        <button class="btn-danger ">Crear Reserva </button>
         <table>
             <li></li>
         </table>
     </div>
-    <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id=@Model.Id >Editar</a>
-    <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="List">Volver</a>
+
+    <br />
+    <br />
+    <br />
+    <a type="button" class="btn btn-primary abajoizq" asp-area="" asp-controller="Customers" asp-action="List">Volver</a>
 </body>
 </html>
