@@ -24,7 +24,6 @@ namespace Library.Services.Services
         {
             try
             {
-             
                 var book = _context.Books
                     .Include(x => x.BookCopies.Where(x => !x.Disabled))
                     .Where(x => x.Id == id && !x.Disabled)
