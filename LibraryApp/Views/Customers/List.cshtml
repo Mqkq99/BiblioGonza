@@ -10,12 +10,12 @@
 <br>
 
 <p>
-    <a class="btn btn-primary costado" asp-action="Create" >Crear Usuario</a>
+    <a class="btn btn-primary costado" asp-action="Create" >Crear Usuario <i class="fa-solid fa-user-plus"></i> </a>
 </p>
 <hr>
 <br>
 <br>
-<table class="table" >
+<table class="table tablaCentradaCustomers" >
     <thead>
         <tr>
             <th>
@@ -47,10 +47,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            <td>
-                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id=@item.Id >Editar</a>
-                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Details" asp-route-id=@item.Id >Detalles</a>
-                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Delete" asp-route-id=@item.Id >Eliminar</a>
+            <td style="width:324px;">
+                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id=@item.Id >Editar <i class="fa-solid fa-user-pen"></i></a>
+                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Details" asp-route-id=@item.Id >Detalles <i class="fa-solid fa-circle-info"></i></a>
+                <a type="button" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Delete" asp-route-id=@item.Id >Eliminar <span> <i class="fa-solid fa-trash-can"></i></span></a>
             </td>
         </tr>
 }
@@ -73,3 +73,5 @@
             </div>
         </div>
     }
+
+        <a type="button" class="btn btn-primary abajoizq" asp-area="" asp-controller="Home" asp-action="Index">Volver</a>

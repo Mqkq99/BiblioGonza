@@ -20,18 +20,18 @@
     <br />
     <br />
     <br />
-
+    <div class="recuadroUsuarioDetalle">
     <table id="detallesUsuario">
         <thead>
         <tr>
-            <th style="padding:0 15px 0 15px;"> 
+            <th style="padding:0 75px 0 15px;"> 
             Nombre   
             </th>
-            <th style="padding:0 15px 0 15px;">
+            <th style="padding:0 75px 0 15px;">
                 Direccion    
             </th>
 
-             <th style="padding:0 15px 0 15px;">
+             <th style="padding:0 55px 0 15px;">
                  Telefono    
             </th>
 
@@ -50,6 +50,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
       <br />
         <br />
     <a type="button" id="botonEdicionUsuario" class="btn btn-primary" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id=@Model.Id >Editar datos</a>
@@ -59,7 +60,7 @@
     <div>
 
         <h4 id="historialRes">Historial de reservas</h4>
-        <button class="btn-danger ">Crear Reserva </button>
+        @*<button class="btn-danger ">Crear Reserva </button>*@
         <table>
             <li></li>
         </table>

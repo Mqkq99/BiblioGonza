@@ -16,27 +16,30 @@
         <br />
         <form asp-action="Create" method="post" onsubmit="return validateCustomer()">
             <div class="myforma">
-                <label >Direccion:</label>
+                <label style=" width: 70px; " >Direccion:</label>
                 <input style="margin-left:18px" asp-for="Address" required maxlength="60" />
             </div>
 
             <div class="myforma">
-                <label  class="">Nombre:</label>
+                <label  style=" width: 88px; "class="">Nombre:</label>
                 <input asp-for="Name" required maxlength="50" required maxlenght="50" />
 
             </div>
             <div class="myforma">
-                <label  class="">Telefono:</label>
+                <label style=" width: 88px; " class="">Teléfono:</label>
                 <input asp-for="PhoneNumber" required maxlength="15" min="0" />
             </div>
             <div class="myforma">
-                <label >DNI:</label>
+                <label style=" width: 88px; " >DNI:</label>
                 <input asp-for="Id" id="id" required maxlength="9" />
             </div>
             <div>
                 <p></p>
-                <input type="submit" id="submitCustomer" value="Aceptar">
-                <p></p>
+            <button type="submit" style="width:70px;">Aceptar</button>
+             <p></p>
+               @* <p></p>
+                <input style="width:90px;" type="submit" id="submitCustomer" value="Aceptar">
+                <p></p>*@
             </div>
 
         </form>

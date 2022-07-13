@@ -16,18 +16,18 @@
             <h2 >Crear Libro</h2>
             <br />
         <form asp-action="Create" method="post">
-            <div class="myforma">
+            <div class="myforma" style="margin-left:-42px">
                 <label asp-for="Title">Título:</label>
-                <input style="margin-left:18px" required maxlength="50" asp-for="Title" />
+                <input required maxlength="50" asp-for="Title" />
             </div>
            
-            <div  class="myforma">
+            <div  class="myforma" style=" margin-left: -40px">
                 <label asp-for="Author" class="" >Autor:</label>
                 <input asp-for="Author" required maxlength="50" />
             </div>            
             <div>
                <p></p>
-            <button type="submit">Aceptar</button>
+            <button type="submit" style="width:70px;">Aceptar</button>
              <p></p>
         </div>
 

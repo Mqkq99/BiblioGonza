@@ -17,26 +17,26 @@
         <br />
         <form asp-action="UpdateData" method="post" asp-route-id="@Model.Id">
             <div class="myforma">
-                <label asp-for="Address">Direccion:</label>
+                <label style="width:66px;" asp-for="Address">Direccion:</label>
                 <input style="margin-left:18px" asp-for="Address" required maxlength="50" />
             </div>
 
             <div class="myforma">
-                <label asp-for="Name" class="">Nombre:</label>
+                <label style="width:83px;" asp-for="Name" class="">Nombre:</label>
                 <input asp-for="Name" required maxlength="50" />
 
             </div>
             <div class="myforma">
-                <label asp-for="PhoneNumber" class="">Telefono:</label>
+                <label style="width:83px;" asp-for="PhoneNumber" class="">Telefono:</label>
                 <input asp-for="PhoneNumber" required maxlength="15" />
             </div>
             <div class="myforma">
-                <label asp-for="Id" class="">DNI:</label>
+                <label style="width:84px;" asp-for="Id" class="">DNI:</label>
                 <input asp-for="Id" value="@Model.Id" disabled />
             </div>
             <div>
                 <p></p>
-                <a ><button type="submit">Guardar cambios</button></a>
+                <a ><button style="width: 135px;margin-left: 77px;" type="submit">Guardar cambios</button></a>
                 <p></p>
             </div>
 
