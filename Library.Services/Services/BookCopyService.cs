@@ -112,8 +112,9 @@ namespace Library.Services.Services
 
                 if(copy != null)
                 {
+                    copy.Edition = viewModel.Edition;
                     copy.TotalQuantity = viewModel.TotalQuantity;
-
+                    copy.AvailableQuantity = viewModel.TotalQuantity;
                     _context.Update(copy);
                     _context.SaveChanges();
 
@@ -153,5 +154,12 @@ namespace Library.Services.Services
                 return ValueResult<bool>.Error(ex.Message);
             }
         }
+        public BookViewModel getBookViewModel(String id)
+        {
+            BookViewModel book = _mapper.Map<BookViewModel>(GetBookById(id));
+
+            return book;
+        }
     }
+
 }

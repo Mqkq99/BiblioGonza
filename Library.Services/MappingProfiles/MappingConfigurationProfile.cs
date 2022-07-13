@@ -75,6 +75,7 @@ namespace Library.Services.MappingProfiles
                     opt => opt.MapFrom(src => src.Customer.Id))
                 .ReverseMap();
             CreateMap<BookCopy, BookCopyCreateViewModel>().ReverseMap();
+           
         }
     }
 }

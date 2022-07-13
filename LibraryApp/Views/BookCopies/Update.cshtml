@@ -15,7 +15,7 @@
         <br />
             <h2 >Editar Copia</h2>
             <br />
-        <form asp-action="UpdateData" method="post" asp-route-id=@Model.Id>
+        <form asp-action="UpdateData" method="post" asp-route-id=@Model.Id asp-route-bookId=@Model.Book.Id>
             <div class="myforma">
                 <label style="width:35px;" asp-for="Edition">Edición:</label>
                 <input style="margin-left:18px" asp-for="Edition" required maxlength="70" />
