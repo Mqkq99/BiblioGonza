@@ -15,20 +15,20 @@
         <h5> @Model.Book.Author </h5>
 
         <br />
-        <form asp-action="Create" asp-controller="BookCopies"  asp method="post" asp-route-bookId="@Model.Book.Id">
+        <form asp-action="Create" asp-controller="BookCopies" asp method="post" asp-route-bookId="@Model.Book.Id" onsubmit="return validateBookCopy()">
             <div class="myforma">
                 <label asp-for="Edition">Edicion:</label>
-                <input style="margin-left:18px" asp-for="Edition" required/>
+                <input style="margin-left:18px" asp-for="Edition" required />
             </div>
-             
+
             <div class="myforma">
-                <label style="width: 89px; margin-left:-8px;" asp-for="TotalQuantity" >Cantidad:</label>
-                <input asp-for="TotalQuantity" type="number" required/>
-                
+                <label style="width: 89px; margin-left:-8px;" asp-for="TotalQuantity">Cantidad:</label>
+                <input asp-for="TotalQuantity" type="number" id="quantity" required />
+
             </div>
             <div>
                 <p></p>
-                <button type="submit" >Aceptar</button>
+                <button type="submit">Aceptar</button>
                 <p></p>
             </div>
 
@@ -47,4 +47,24 @@
     <a type="button" class="btn btn-primary" asp-area="" asp-controller="Books" asp-action="Details" asp-route-id=@Model.Book.Id>Cancelar</a>
 
 </body>
+    <script>
+        function validateQuantity() {
+            var copy = document.getElementById("quantity").value
+            if (copy > 0) {
+                return true
+            }
+            else {
+                alert("La cantidad debe ser mayor a 0");
+                return false
+            }
+        }
+        function validateBookCopy() {
+            if (validateQuantity()) {
+                return true
+            } else {
+                return false
+            }
+        }
+    </script>
 </html>
+
