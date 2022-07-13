@@ -10,7 +10,10 @@ namespace Library.Services.Interfaces
     public interface IBookCopyService
     {
         ValueResult<BookCopyCreateViewModel> GetById(string id);
+        
         ValueResult<string> Create(BookCopyCreateViewModel viewModel,string bookId);
         ValueResult<BookCopyCreateViewModel> CreateInizialization(string id);
+        ValueResult<BookCopyCreateViewModel> Update(BookCopyCreateViewModel viewModel);
+        ValueResult<bool> Delete(string id);
     }
 }
