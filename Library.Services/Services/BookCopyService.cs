@@ -108,12 +108,20 @@ namespace Library.Services.Services
         {
             try
             {
-                BookCopy bookCopy = _mapper.Map<BookCopy>(viewModel);
+                BookCopy copy = _context.BookCopies.Where(x => x.Id == viewModel.Id).FirstOrDefault();
 
-                _context.Update(bookCopy);
-                _context.SaveChanges();
+                if(copy != null)
+                {
+                    copy.TotalQuantity = viewModel.TotalQuantity;
 
-                return ValueResult<BookCopyCreateViewModel>.Ok(viewModel); ;
+                    _context.Update(copy);
+                    _context.SaveChanges();
+
+                    return ValueResult<BookCopyCreateViewModel>.Ok(viewModel); 
+                }
+                else
+                    return ValueResult<BookCopyCreateViewModel>.NotFound();
+
             }
             catch (Exception ex)
             {
