@@ -54,7 +54,7 @@ namespace Library.Services.Services
 
             return ValueResult<BookCopyCreateViewModel>.Ok(viewModel);
         }
-
+       
         private BookViewModel GetBookViewModelById(string id)
         {
             var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
@@ -101,6 +101,48 @@ namespace Library.Services.Services
             catch (Exception ex)
             {
                 return ValueResult<List<BookCopySearchViewModel>>.Error(ex.Message);
+            }
+        }
+
+        public ValueResult<BookCopyCreateViewModel> Update(BookCopyCreateViewModel viewModel)
+        {
+            try
+            {
+                BookCopy bookCopy = _mapper.Map<BookCopy>(viewModel);
+
+                _context.Update(bookCopy);
+                _context.SaveChanges();
+
+                return ValueResult<BookCopyCreateViewModel>.Ok(viewModel); ;
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<BookCopyCreateViewModel>.Error(ex.Message);
+            }
+        }
+
+        public ValueResult<bool> Delete(string id)
+        {
+            try
+            {
+                var bookCopy = _context.BookCopies.Where(x => x.Id == id).FirstOrDefault();
+
+                if (bookCopy != null)
+                {
+                    bookCopy.Disabled = true;
+                    _context.Update(bookCopy);
+                    _context.SaveChanges();
+
+                    return ValueResult<bool>.Ok(true);
+                }
+                else
+                {
+                    return ValueResult<bool>.NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<bool>.Error(ex.Message);
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿@model Library.Services.ViewModels.Books.BookViewModel
+﻿@model Library.Services.ViewModels.BookCopies.BookCopyCreateViewModel
 @{
     Layout = "_Layout";
 }
@@ -13,17 +13,17 @@
     
     <div class="myform fondo" >
         <br />
-            <h2 >Editar Libro</h2>
+            <h2 >Editar Copia</h2>
             <br />
         <form asp-action="UpdateData" method="post" asp-route-id=@Model.Id>
             <div class="myforma">
-                <label style="width:35px;" asp-for="Author">Autor:</label>
-                <input style="margin-left:18px" asp-for="Author" required maxlength="50" />
+                <label style="width:35px;" asp-for="Edition">Edición:</label>
+                <input style="margin-left:18px" asp-for="Edition" required maxlength="70" />
             </div>
            
             <div  class="myforma">
-                <label style="width:53px;" asp-for="Title" class="" >Titulo:</label>
-                <input asp-for="Title" required maxlength="50" />
+                <label style="width:53px;" asp-for="TotalQuantity" class="" >Edición:</label>
+                <input asp-for="TotalQuantity" required />
             </div>    
                      
               

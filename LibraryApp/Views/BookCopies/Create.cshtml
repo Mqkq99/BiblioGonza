@@ -11,7 +11,7 @@
 
     <div class="myform fondo">
         <br />
-        <h2>Crear copia de libro @Model.Book.Title </h2>
+        <h2>Crear copias del libro @Model.Book.Title </h2>
         <h5> @Model.Book.Author </h5>
 
         <br />
@@ -20,15 +20,15 @@
                 <label asp-for="Edition">Edicion:</label>
                 <input style="margin-left:18px" asp-for="Edition" required/>
             </div>
-
+             
             <div class="myforma">
-                <label asp-for="TotalQuantity" >Cantidad:</label>
+                <label style="width: 89px; margin-left:-8px;" asp-for="TotalQuantity" >Cantidad:</label>
                 <input asp-for="TotalQuantity" type="number" required/>
                 
             </div>
             <div>
                 <p></p>
-                <button type="submit" >Submit form</button>
+                <button type="submit" >Aceptar</button>
                 <p></p>
             </div>
 
@@ -43,5 +43,8 @@
 
 
     </div>
+
+    <a type="button" class="btn btn-primary" asp-area="" asp-controller="Books" asp-action="Details" asp-route-id=@Model.Book.Id>Cancelar</a>
+
 </body>
 </html>

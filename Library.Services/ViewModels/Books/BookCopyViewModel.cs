@@ -11,6 +11,6 @@ namespace Library.Services.ViewModels.Books
     {
         public string Edition { get; set; }
 
-        public int TotalQuantity { get; set; }
+        public int AvailableQuantity { get; set; }
     }
 }
