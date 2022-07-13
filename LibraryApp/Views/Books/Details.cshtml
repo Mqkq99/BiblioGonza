@@ -12,23 +12,42 @@
     <title>Document</title>
 </head>
 <body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1> Detalle del Libro</h1>
+    <br />
+    <br />
+    <br />
+    <div class="detalleLibro">
 
-    <div class="container">
-        <p>Nombre: @Model.Author</p>
-        <p>Direccion: @Model.Title</p>
-        <button class="btn-danger ">crear reserva </button>
-        <button> <a class="btn-dark" asp-controller="BookCopies" asp-action="Create" asp-route-bookid=@Model.Id>Agregar Copias</a></button>
+        <p>Título: @Model.Title</p>
+        <p>Autor: @Model.Author</p>
+        
+
+        <br />
+        <br />
+        <a style=" width: 140px; margin-left: 116px; margin-bottom: -19px;" type="button" class="btn btn-primary" asp-controller="BookCopies" asp-action="Create" asp-route-bookid=@Model.Id>Agregar Copias</a>
+        
 
 
 
     </div>
     <div>
+        <br />
+        <br />
+        <br />
 
-
+        @*<button class="btn-danger ">Crear Reserva </button>*@
         @if (@Model.Copies != null)
         {
 
             <h4>Historial de reservas</h4>
+              
+              <br />
+              <br />
+              <br />
             @foreach (var item in @Model.Copies)
             {
                 <ol>
@@ -41,5 +60,9 @@
 
 
     </div>
+    <br />
+    <br />
+    <br />
+    <a type="button" class="btn btn-primary abajoizq" asp-area="" asp-controller="Books" asp-action="List">Volver</a>
 </body>
 </html>

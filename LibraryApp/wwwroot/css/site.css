@@ -165,3 +165,59 @@ h1 {
     
 
 }
+
+.abajoizq{
+    position:absolute;
+    bottom: 120px;
+    left: 480px;
+
+}
+
+#historialRes {
+    position: absolute;
+    bottom: 385px;
+    left: 841px;
+}
+
+#detallesUsuario {
+    position: relative;
+    left: 17px;
+    margin-top: 35px;
+}
+
+#botonEdicionUsuario {
+    position: relative;
+    left: 813px;
+    top: -29px;
+}
+
+.tablaCentradaCustomers {
+    margin-left: 229px;
+    margin-top: -15px;
+    width: 1060px;
+}
+
+
+.tablaCentradaLibros {
+    margin-left: 268px;
+    margin-top: 55px;
+    width: 925px;
+}
+
+.detalleLibro {
+    width: 295px;
+    margin-left: 499px;
+    border-style: solid;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+.recuadroUsuarioDetalle {
+    border-color: black;
+    border-style: solid;
+    width: 568px;
+    margin-left: 360px;
+    margin-top: -29px;
+    padding-bottom: 39px;
+}
