@@ -47,7 +47,9 @@ namespace Library.Services.Services
 
         public ValueResult<BookCopyCreateViewModel> GetById(string id)
         {
-            var bookCopy = _context.BookCopies.Where(x => x.Id == id).FirstOrDefault();
+            var bookCopy = _context.BookCopies
+                .Include(x=> x.Book)
+                .Where(x => x.Id == id).FirstOrDefault();
 
             BookCopyCreateViewModel viewModel = _mapper.Map<BookCopyCreateViewModel>(bookCopy);
 
