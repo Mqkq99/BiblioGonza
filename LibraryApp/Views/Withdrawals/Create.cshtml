@@ -10,20 +10,20 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>
-    <h2>Crear Nueva Reserva</h2>
+    <h2 style=" margin-left: 532px; margin-top: 80px; ">Crear Nueva Reserva</h2>
      <form asp-action="CreateWithdrawal" asp-controller="Withdrawals"  asp method="post">
     <div class="container">
-        <h3>Datos del usuario</h3>
-        <p>Nombre: @Model?.Customer?.Name</p>
-        <p>Direccion: @Model?.Customer?.Address</p>
-        <p>Numero de Telefono: @Model?.Customer?.PhoneNumber</p>
+        <h3  style=" margin-left: 566px; margin-top: 64px; ">Datos del usuario</h3>
+        <p class="reservaCentrada">Nombre: @Model?.Customer?.Name</p>
+        <p class="reservaCentrada">Direccion: @Model?.Customer?.Address</p>
+        <p class="reservaCentrada">Numero de Telefono: @Model?.Customer?.PhoneNumber</p>
 
 
-        Libro Elegido:<input readonly type="text" id="pickedBookTitle" value="" />
+      <p class="reservaCentrada">Libro Elegido:<input readonly type="text" id="pickedBookTitle" value="" /></p>  
         <input asp-for="BookId" hidden readonly type="text" id="pickedBookId" value="" />
         <input asp-for="CustomerId" hidden readonly type="text" id="pickedBookId" value="@Model?.Customer.Id" />
     </div>
-    <button type="submit">Crear reserva</button>
+    <button style=" margin-left: 662px; margin-top: 15px; width:125px " type="submit">Crear reserva</button>
     </form>
 
     <br />
@@ -31,8 +31,8 @@
     <br />
     <br />
 
-    <div class="container">
-        <h3>Libros</h3>
+    <div class="container reservaCentrada">
+        <h3 style="margin-top:-127px;" >Libros</h3>
         Buscador:
         <input id="tituloLibro" type="text" />
         <br />
@@ -108,5 +108,7 @@
             self.EndDate = Date.now().toString();
         }
     </script>
+
+    <a type="button" class="btn btn-primary abajoizq" asp-area="" asp-controller="Customers" asp-action="Details" asp-route-id=@Model.Customer.Id >Cancelar</a>
 </body>
 </html>
