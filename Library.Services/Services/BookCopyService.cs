@@ -92,7 +92,7 @@ namespace Library.Services.Services
             {
                 var copies = _context.BookCopies
                     .Include(x => x.Book)
-                    .Where(x => x.Book.Title.Contains(title) && !x.Disabled && x.AvailableQuantity > 0);
+                    .Where(x => x.Book.Title.Contains(title) && !x.Disabled && x.AvailableQuantity > 0 && !x.Book.Disabled);
 
                 List<BookCopySearchViewModel> copiesList = _mapper.Map<List<BookCopySearchViewModel>>(copies);
 
