@@ -27,9 +27,9 @@ namespace LibraryApp.Controllers
             {
                 Edition = viewModel.Edition,
                 TotalQuantity = viewModel.TotalQuantity,
-            },bookId);
+            }, bookId);
 
-            return RedirectToAction("Details", "Books",  new{id = bookId });
+            return RedirectToAction("Details", "Books", new { id = bookId });
         }
 
         [HttpPost]
@@ -40,17 +40,20 @@ namespace LibraryApp.Controllers
             return Json(result.Result.ToList().Take(10));
         }
 
-        public IActionResult Update(String id)
+        public IActionResult Update(string id, string bookId)
         {
+            BookViewModel book = _bookCopyService.getBookViewModel(bookId);
             ValueResult<BookCopyCreateViewModel> bookCopy = _bookCopyService.GetById(id);
-
+            bookCopy.Result.Book = book;
             return View("Update", bookCopy.Result);
         }
-        public IActionResult UpdateData(BookCopyCreateViewModel viewModel)
+        public IActionResult UpdateData(BookCopyCreateViewModel viewModel, string bookId)
         {
+            BookViewModel book = _bookCopyService.getBookViewModel(bookId);
             ValueResult<BookCopyCreateViewModel> bookCopy = _bookCopyService.Update(viewModel);
+            bookCopy.Result.Book = book;
 
-            return View("Details", bookCopy.Result);
+            return RedirectToAction("Details", "Books", new { id = bookCopy.Result.Book.Id });
         }
 
         [Route("Books/Delete/{id}/{bookId}")]
@@ -58,7 +61,7 @@ namespace LibraryApp.Controllers
         {
             _bookCopyService.Delete(id);
 
-            return RedirectToAction("Details", "Books", new {id = bookId});
+            return RedirectToAction("Details", "Books", new { id = bookId });
         }
     }
 }

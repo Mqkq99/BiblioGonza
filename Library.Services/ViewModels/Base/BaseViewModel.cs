@@ -9,7 +9,7 @@ namespace Library.Services.ViewModels.Base
 {
     public class BaseViewModel
     {
-        [Required]
+        
         public virtual string Id { get; set; }
     }
 }
