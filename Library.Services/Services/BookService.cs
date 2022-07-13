@@ -4,6 +4,7 @@ using Library.Services.ResultDTOs;
 using Library.Services.ViewModels.Books;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library.Services.Services
 {
@@ -23,7 +24,11 @@ namespace Library.Services.Services
         {
             try
             {
-                var book = _context.Books.Where(x => x.Id == id && !x.Disabled).FirstOrDefault();
+             
+                var book = _context.Books
+                    .Include(x => x.BookCopies)
+                    .Where(x => x.Id == id && !x.Disabled)
+                    .FirstOrDefault();
 
                 if (book != null)
                 {
