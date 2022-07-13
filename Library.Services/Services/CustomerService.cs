@@ -21,7 +21,7 @@ namespace Library.Services.Services
         {
             _context = context != null ? context : throw new ArgumentNullException(nameof(context));
             _mapper = mapper != null ? mapper : throw new ArgumentNullException(nameof(mapper));
-        }       
+        }
 
         public ValueResult<CustomerViewModel> GetById(string id)
         {
@@ -29,9 +29,11 @@ namespace Library.Services.Services
             {
                 var customer = _context.Customers
                     .Include(x => x.Withdrawals)
+                    .ThenInclude(x => x.BookCopy)
+                    .ThenInclude(x=> x.Book)
                     .Where(x => x.Id == id && !x.Disabled).FirstOrDefault();
 
-                if(customer != null)
+                if (customer != null)
                 {
                     var viewModel = _mapper.Map<CustomerViewModel>(customer);
 
@@ -62,7 +64,7 @@ namespace Library.Services.Services
             {
                 return ValueResult<string>.Error(ex.Message);
             }
-            }
+        }
 
         public ValueResult<List<CustomerListViewModel>> getAll()
         {

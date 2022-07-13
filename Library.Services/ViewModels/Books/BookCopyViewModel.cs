@@ -9,6 +9,7 @@ namespace Library.Services.ViewModels.Books
 {
     public class BookCopyViewModel : BaseViewModel
     {
+        public string Title { get; set; }   
         public string Edition { get; set; }
 
         public int AvailableQuantity { get; set; }

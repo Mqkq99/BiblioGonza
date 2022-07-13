@@ -22,6 +22,7 @@ namespace LibraryApp.Controllers
         [HttpPost]
         public IActionResult Create(BookViewModel viewModel)
         {
+           
             ValueResult<string> result = _bookService.Create(viewModel);
 
             if (result.Success)
@@ -52,7 +53,7 @@ namespace LibraryApp.Controllers
         {
             ValueResult<BookViewModel> book = _bookService.GetById(id);
 
-            return View("Update",book.Result);
+            return View("Update", book.Result);
         }
 
         public IActionResult UpdateData(BookViewModel viewModel)
