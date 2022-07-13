@@ -27,11 +27,17 @@ namespace LibraryApp.Controllers
             {
                 Edition = viewModel.Edition,
                 TotalQuantity = viewModel.TotalQuantity,
-                
-                
             },bookId);
 
             return RedirectToAction("Details", "Books",  new{id = bookId });
+        }
+
+        [HttpPost]
+        public JsonResult Search(string title)
+        {
+            var result = _bookCopyService.Search(title);
+
+            return Json(result.Result.ToList().Take(10));
         }
     }
 }

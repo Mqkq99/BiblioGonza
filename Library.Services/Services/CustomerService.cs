@@ -4,6 +4,7 @@ using Library.Services.ResultDTOs;
 using Library.Services.ViewModels.Customers;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library.Services.Services
 {
@@ -26,7 +27,9 @@ namespace Library.Services.Services
         {
             try
             {
-                var customer = _context.Customers.Where(x => x.Id == id && !x.Disabled).FirstOrDefault();
+                var customer = _context.Customers
+                    .Include(x => x.Withdrawals)
+                    .Where(x => x.Id == id && !x.Disabled).FirstOrDefault();
 
                 if(customer != null)
                 {
@@ -45,11 +48,9 @@ namespace Library.Services.Services
 
         public ValueResult<string> Create(CustomerCreateViewModel viewModel)
         {
-            var viewModelReady= _mapper.Map<CustomerViewModel>(viewModel);
-            
             try
             {
-                Customer customer = _mapper.Map<Customer>(viewModelReady);
+                Customer customer = _mapper.Map<Customer>(viewModel);
 
                 _context.Add(customer);
 
@@ -116,6 +117,22 @@ namespace Library.Services.Services
             catch (Exception ex)
             {
                 return ValueResult<bool>.Error(ex.Message);
+            }
+        }
+
+        public ValueResult<List<CustomerListViewModel>> Search(string dni)
+        {
+            try
+            {
+                var customers = _context.Customers.Where(x => x.Id.Contains(dni) && !x.Disabled);
+
+                List<CustomerListViewModel> customerList = _mapper.Map<List<CustomerListViewModel>>(customers);
+
+                return ValueResult<List<CustomerListViewModel>>.Ok(customerList);
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<List<CustomerListViewModel>>.Error(ex.Message);
             }
         }
     }

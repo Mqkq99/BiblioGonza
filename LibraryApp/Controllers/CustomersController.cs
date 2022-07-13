@@ -37,8 +37,6 @@ namespace LibraryApp.Controllers
             return View("Create", viewModel);
         }
 
-
-
         public IActionResult Details(string id)
         {
             if(id == null)
@@ -82,7 +80,13 @@ namespace LibraryApp.Controllers
             return View("List", users.Result);
         }
 
+        [HttpPost]
+        public JsonResult Search(string dni)
+        {
+            var result = _customerService.Search(dni);
 
+            return Json(result.Result.ToList().Take(10));
+        }
     }
 }
 

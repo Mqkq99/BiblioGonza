@@ -18,28 +18,21 @@
         <p>Direccion: @Model.Title</p>
         <button class="btn-danger ">crear reserva </button>
         <button> <a class="btn-dark" asp-controller="BookCopies" asp-action="Create" asp-route-bookid=@Model.Id>Agregar Copias</a></button>
-
-
-
     </div>
     <div>
-
-
-        @if (@Model.Copies != null)
+        @if (@Model.BookCopies != null)
         {
-
-            <h4>Historial de reservas</h4>
-            @foreach (var item in @Model.Copies)
+            <h4>Listado de copias</h4>
+            //Que sea una tabla como las otras 
+            @foreach (var item in @Model.BookCopies)
             {
                 <ol>
 
-                    <li>@item.Edition @item.Quantity</li>
+                    <li>@item.Edition @item.TotalQuantity</li>
                  
                 </ol>
             }
         }
-
-
     </div>
 </body>
 </html>

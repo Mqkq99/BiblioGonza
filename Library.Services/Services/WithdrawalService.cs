@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Library.Services.Interfaces;
 using Library.Services.ResultDTOs;
+using Library.Services.ViewModels.Customers;
 using Library.Services.ViewModels.Withdrawals;
 using LibraryApp.DAL;
 using LibraryApp.DAL.Model;
@@ -48,7 +49,26 @@ namespace Library.Services.Services
             }
         }
 
-        public ValueResult<string> Create(WithdrawalViewModel viewModel)
+        public ValueResult<WithdrawalCreateViewModel> GetCreateData(string customerId)
+        {
+            try
+            {
+                var customer = _context.Customers.Where(x => x.Id == customerId && !x.Disabled).FirstOrDefault();
+
+                WithdrawalCreateViewModel viewModel = new WithdrawalCreateViewModel()
+                {
+                    Customer = _mapper.Map<CustomerListViewModel>(customer)
+                };
+
+                return ValueResult<WithdrawalCreateViewModel>.Ok(viewModel);
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<WithdrawalCreateViewModel>.Error(ex.Message);
+            }
+        }
+
+        public ValueResult<string> Create(WithdrawalCreateViewModel viewModel)
         {
             try
             {
@@ -60,7 +80,7 @@ namespace Library.Services.Services
                 if(customer == null)
                     return ValueResult<string>.Error("Error creando la reserva, el usuario seleccionado es inexistente");
 
-                var bookCopy = _context.BookCopies.Where(x => x.Id == viewModel.BookCopyId && !x.Disabled && x.TotalQuantity > 0).FirstOrDefault();
+                var bookCopy = _context.BookCopies.Where(x => x.Id == viewModel.BookId && !x.Disabled && x.TotalQuantity > 0).FirstOrDefault();
 
                 if (bookCopy == null)
                     return ValueResult<string>.Error("Error creando la reserva, la copia del libro seleccionado es inexistente o no tiene un ejemplar disponible");

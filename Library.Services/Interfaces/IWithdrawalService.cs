@@ -12,6 +12,8 @@ namespace Library.Services.Interfaces
     {
         public ValueResult<WithdrawalDetailViewModel> GetById(string id);
 
-        public ValueResult<string> Create(WithdrawalViewModel viewModel);
+        public ValueResult<string> Create(WithdrawalCreateViewModel viewModel);
+
+        public ValueResult<WithdrawalCreateViewModel> GetCreateData(string customerId);
     }
 }

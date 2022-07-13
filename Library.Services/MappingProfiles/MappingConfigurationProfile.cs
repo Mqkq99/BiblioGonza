@@ -36,11 +36,26 @@ namespace Library.Services.MappingProfiles
 
             CreateMap<CustomerViewModel, CustomerCreateViewModel>().ReverseMap();
 
-            CreateMap<Book, BookViewModel>().ReverseMap();
+            CreateMap<Book, BookViewModel>()
+                .ForMember(
+                    dest => dest.BookCopies,
+                    opt => opt.MapFrom(src => src.BookCopies))
+                .ReverseMap();
 
             CreateMap<BookCopy, BookCopyViewModel>().ReverseMap();
 
+            CreateMap<BookCopy, BookCopySearchViewModel>()
+                 .ForMember(
+                    dest => dest.Author,
+                    opt => opt.MapFrom(src => src.Book.Author))
+                .ForMember(
+                    dest => dest.Title,
+                    opt => opt.MapFrom(src => src.Book.Title))
+                .ReverseMap();
+
             CreateMap<Withdrawal, WithdrawalViewModel>().ReverseMap();
+
+            CreateMap<Withdrawal, WithdrawalCreateViewModel>().ReverseMap();
 
             CreateMap<Withdrawal, WithdrawalDetailViewModel>()
                 .ForMember(

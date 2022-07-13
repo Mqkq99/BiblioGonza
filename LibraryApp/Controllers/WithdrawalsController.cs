@@ -14,17 +14,22 @@ namespace LibraryApp.Controllers
             _withdrawalService = withdrawalService;
         }
 
-        public IActionResult Create()
+        [Route("Withdrawals/Create/{id}")]
+        public IActionResult Create(string id)
         {
-            return View();
+            var result = _withdrawalService.GetCreateData(id);
+            return View(result.Result);
         }
 
         [HttpPost]
-        public IActionResult Create(WithdrawalViewModel viewModel)
+        public IActionResult CreateWithdrawal([FromForm] WithdrawalCreateViewModel viewModel)
         {
             ValueResult<string> id = _withdrawalService.Create(viewModel);
 
-            return View(viewModel);
+            var routeValues = new RouteValueDictionary {
+                 { "id", viewModel.CustomerId } };
+
+            return RedirectToAction("Details", "Customers" ,routeValues);
         }
 
         public IActionResult GetById(string id)
@@ -33,5 +38,6 @@ namespace LibraryApp.Controllers
 
             return View();
         }
+               
     }
 }

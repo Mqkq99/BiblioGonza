@@ -26,7 +26,6 @@ namespace Library.Services.Services
         {
             var book = GetBookById(bookId);
 
-
             Guid guid = Guid.NewGuid();
 
             viewModel.Id = guid.ToString();
@@ -85,6 +84,24 @@ namespace Library.Services.Services
 
 
             return book;
+        }
+
+        public ValueResult<List<BookCopySearchViewModel>> Search(string title)
+        {
+            try
+            {
+                var copies = _context.BookCopies
+                    .Include(x => x.Book)
+                    .Where(x => x.Book.Title.Contains(title) && !x.Disabled && x.AvailableQuantity > 0);
+
+                List<BookCopySearchViewModel> copiesList = _mapper.Map<List<BookCopySearchViewModel>>(copies);
+
+                return ValueResult<List<BookCopySearchViewModel>>.Ok(copiesList);
+            }
+            catch (Exception ex)
+            {
+                return ValueResult<List<BookCopySearchViewModel>>.Error(ex.Message);
+            }
         }
     }
 }

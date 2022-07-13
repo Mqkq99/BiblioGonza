@@ -11,8 +11,8 @@ namespace Library.Services.ViewModels.Withdrawals
 {
     public class WithdrawalViewModel : BaseViewModel
     {
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
 
         public string BookCopyId { get; set; }
 
