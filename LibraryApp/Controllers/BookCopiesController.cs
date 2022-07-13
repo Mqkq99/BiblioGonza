@@ -47,12 +47,10 @@ namespace LibraryApp.Controllers
             return View("Details", bookCopy.Result);
         }
 
-        [Route("Books/Delete/{id}")]
-        public IActionResult Delete(string id)
+        [Route("Books/Delete/{id}/{bookId}")]
+        public IActionResult Delete(string id, string bookId)
         {
-            var bookCopy = _bookCopyService.GetById(id);
             _bookCopyService.Delete(id);
-            var bookId = bookCopy.Result.Book.Id;
 
             return RedirectToAction("Details", "Books", new {id = bookId});
         }
