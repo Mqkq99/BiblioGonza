@@ -59,16 +59,56 @@
     <br />
     <div>
 
-        <h4 id="historialRes">Historial de reservas</h4>
-        <table>
-            <li></li>
-        </table>
+        @if (@Model.Withdrawals != null)
+        {
+            <table class="table tablaCentradaLibros">
+                <thead>
+                    <tr>
+                        <th>
+                            Titulo
+
+                        </th>
+
+                        <th>
+                            Fecha de retiro
+                        </th>
+                        <th>
+                            Fecha de devolucion
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @Model.Withdrawals)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BookTitle)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            <td style="width:320px;">
+                                <a type="button" class="btn btn-primary" asp-area="" asp-controller="BookCopies" asp-action="Update" asp-route-id=@item.Id>Editar <span> <i class="fa-solid fa-pen-to-square"></i></span></a>
+                                <a type="button" class="btn btn-primary" asp-area="" asp-controller="BookCopies" asp-action="Delete" asp-route-id=@item.Id asp-route-bookId=@Model.Id>Eliminar <span> <i class="fa-solid fa-trash-can"></i></span> </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
     </div>
 
     <br />
     <br />
     <br />
-    <a type="button" class="btn btn-primary" asp-area="" asp-controller="Withdrawals" asp-action="Create" asp-route-id=@Model.Id >Crear Reserva</a>
+    <a type="button" class="btn btn-primary" asp-area="" asp-controller="Withdrawals" asp-action="Create" asp-route-id=@Model.Id>Crear Reserva</a>
     <a type="button" class="btn btn-primary abajoizq" asp-area="" asp-controller="Customers" asp-action="List">Volver</a>
 </body>
 </html>
