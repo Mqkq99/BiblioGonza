@@ -33,5 +33,28 @@ namespace LibraryApp.Controllers
 
             return RedirectToAction("Details", "Books",  new{id = bookId });
         }
+
+        public IActionResult Update(String id)
+        {
+            ValueResult<BookCopyCreateViewModel> bookCopy = _bookCopyService.GetById(id);
+
+            return View("Update", bookCopy.Result);
+        }
+        public IActionResult UpdateData(BookCopyCreateViewModel viewModel)
+        {
+            ValueResult<BookCopyCreateViewModel> bookCopy = _bookCopyService.Update(viewModel);
+
+            return View("Details", bookCopy.Result);
+        }
+
+        [Route("Books/Delete/{id}")]
+        public IActionResult Delete(string id)
+        {
+            var bookCopy = _bookCopyService.GetById(id);
+            _bookCopyService.Delete(id);
+            var bookId = bookCopy.Result.Book.Id;
+
+            return RedirectToAction("Details", "Books", new {id = bookId});
+        }
     }
 }
