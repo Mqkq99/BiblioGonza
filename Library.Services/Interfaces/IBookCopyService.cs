@@ -16,5 +16,6 @@ namespace Library.Services.Interfaces
         ValueResult<BookCopyCreateViewModel> Update(BookCopyCreateViewModel viewModel);
         ValueResult<bool> Delete(string id);
         ValueResult<List<BookCopySearchViewModel>> Search(string title);
+        BookViewModel getBookViewModel(String id);
     }
 }
