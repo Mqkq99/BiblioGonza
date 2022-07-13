@@ -1,0 +1,112 @@
+﻿@model Library.Services.ViewModels.Withdrawals.WithdrawalCreateViewModel
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <h2>Crear Nueva Reserva</h2>
+     <form asp-action="CreateWithdrawal" asp-controller="Withdrawals"  asp method="post">
+    <div class="container">
+        <h3>Datos del usuario</h3>
+        <p>Nombre: @Model?.Customer?.Name</p>
+        <p>Direccion: @Model?.Customer?.Address</p>
+        <p>Numero de Telefono: @Model?.Customer?.PhoneNumber</p>
+
+
+        Libro Elegido:<input readonly type="text" id="pickedBookTitle" value="" />
+        <input asp-for="BookId" hidden readonly type="text" id="pickedBookId" value="" />
+        <input asp-for="CustomerId" hidden readonly type="text" id="pickedBookId" value="@Model?.Customer.Id" />
+    </div>
+    <button type="submit">Crear reserva</button>
+    </form>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <h3>Libros</h3>
+        Buscador:
+        <input id="tituloLibro" type="text" />
+        <br />
+        <br />
+        <table id="tblLibros" cellpadding="0" cellspaci0="0">
+            <tr>
+                <th style="width: 90px">Titulo</th>
+                <th style="width: 120px">Autor</th>
+                <th style="width: 90px">Edicion</th>
+                <th style="width: 90px">Agregar</th>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            GetBooks();
+            $("#tituloLibro").keyup(function() {
+                GetBooks();
+            });
+        });
+        function chooseBook(bookTitle, bookId) {
+            $("#pickedBookTitle").val(bookTitle);
+            $("#pickedBookId").val(bookId);
+        }
+        function GetBooks() {
+            var title = $.trim($("#tituloLibro").val());
+            $.ajax({
+                type: "POST",
+                url: "/BookCopies/Search",
+                data: { title: title },
+                //contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(books) {
+                    var table = $("#tblLibros");
+                    table.find("tr:not(:first)").remove();
+                    $.each(books, function(i, book) {
+                        var table = $("#tblLibros");
+                        var row = table[0].insertRow(-1);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(0).html(book.title);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(1).html(book.author);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(2).html(book.edition);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(3).append("<button onclick='chooseBook(\"" + book.title + "\", \"" + book.id + "\")' id='btnEdit';>Agregar</button>");
+                    });
+                }
+            });
+        }
+
+        function Save() {
+            var withdrawal = new Withdrawal();
+            console.log(withdrawal);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CreateWithdrawal")",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(withdrawal),
+                success: function() {
+                    window.location = 'localhost:7700/Customers/' + @Model?.Customer?.Id
+                }
+            })
+        }
+
+        function Withdrawal() {
+            var self = this;
+            self.BookId = $("#pickedBookId").val();
+            self.CustomerId = @Model?.Customer?.Id;
+            self.StartDate = Date.now().toString();
+            self.EndDate = Date.now().toString();
+        }
+    </script>
+</body>
+</html>

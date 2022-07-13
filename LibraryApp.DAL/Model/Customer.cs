@@ -15,7 +15,5 @@ namespace LibraryApp.DAL.Model
         public string PhoneNumber { get; set; }
 
         public List<Withdrawal>  Withdrawals { get; set; }
-
-
     }
 }

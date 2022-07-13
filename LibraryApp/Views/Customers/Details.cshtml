@@ -60,13 +60,15 @@
     <div>
 
         <h4 id="historialRes">Historial de reservas</h4>
-        <button class="btn-danger ">Crear Reserva </button>
-
+        <table>
+            <li></li>
+        </table>
     </div>
 
     <br />
     <br />
     <br />
+    <a type="button" class="btn btn-primary" asp-area="" asp-controller="Withdrawals" asp-action="Create" asp-route-id=@Model.Id >Crear Reserva</a>
     <a type="button" class="btn btn-primary abajoizq" asp-area="" asp-controller="Customers" asp-action="List">Volver</a>
 </body>
 </html>

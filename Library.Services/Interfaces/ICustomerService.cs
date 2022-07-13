@@ -16,5 +16,7 @@ namespace Library.Services.Interfaces
         ValueResult<bool> Delete(string id);
 
         ValueResult<CustomerViewModel> Update(CustomerViewModel viewModel);
+
+        ValueResult<List<CustomerListViewModel>> Search(string dni);
     }
 }

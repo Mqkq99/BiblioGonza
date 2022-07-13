@@ -40,7 +40,7 @@
         <br />
 
         @*<button class="btn-danger ">Crear Reserva </button>*@
-        @if (@Model.Copies != null)
+        @if (@Model.BookCopies != null)
         {
             <table class="table tablaCentradaLibros">
                 <thead>
@@ -56,7 +56,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in @Model.Copies)
+                    @foreach (var item in @Model.BookCopies)
                     {
                         <tr>
 
@@ -69,7 +69,7 @@
                             </td>
                             <td style="width:320px;">
                                 <a type="button" class="btn btn-primary" asp-area="" asp-controller="BookCopies" asp-action="Update" asp-route-id=@item.Id>Editar <span> <i class="fa-solid fa-pen-to-square"></i></span></a>
-                                <a type="button" class="btn btn-primary" asp-area="" asp-controller="BookCopies" asp-action="Delete" asp-route-id=@item.Id>Eliminar <span> <i class="fa-solid fa-trash-can"></i></span> </a>
+                                <a type="button" class="btn btn-primary" asp-area="" asp-controller="BookCopies" asp-action="Delete" asp-route-id=@item.Id asp-route-bookId=@Model.Id>Eliminar <span> <i class="fa-solid fa-trash-can"></i></span> </a>
                             </td>
                         </tr>
                     }

@@ -27,12 +27,38 @@ namespace LibraryApp.Controllers
             {
                 Edition = viewModel.Edition,
                 TotalQuantity = viewModel.TotalQuantity,
-                
-                
             },bookId);
 
             return RedirectToAction("Details", "Books",  new{id = bookId });
         }
 
+        [HttpPost]
+        public JsonResult Search(string title)
+        {
+            var result = _bookCopyService.Search(title);
+
+            return Json(result.Result.ToList().Take(10));
+        }
+
+        public IActionResult Update(String id)
+        {
+            ValueResult<BookCopyCreateViewModel> bookCopy = _bookCopyService.GetById(id);
+
+            return View("Update", bookCopy.Result);
+        }
+        public IActionResult UpdateData(BookCopyCreateViewModel viewModel)
+        {
+            ValueResult<BookCopyCreateViewModel> bookCopy = _bookCopyService.Update(viewModel);
+
+            return View("Details", bookCopy.Result);
+        }
+
+        [Route("Books/Delete/{id}/{bookId}")]
+        public IActionResult Delete(string id, string bookId)
+        {
+            _bookCopyService.Delete(id);
+
+            return RedirectToAction("Details", "Books", new {id = bookId});
+        }
     }
 }
