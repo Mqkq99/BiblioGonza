@@ -11,8 +11,8 @@
 
     <div class="myform fondo">
         <br />
-        <h2>Crear copias del libro @Model.Book.Title </h2>
-        <h5> @Model.Book.Author </h5>
+        <h2>Crear copias del libro: @Model.Book.Title </h2>
+        <h5> -@Model.Book.Author- </h5>
 
         <br />
         <form asp-action="Create" asp-controller="BookCopies" asp method="post" asp-route-bookId="@Model.Book.Id" onsubmit="return validateBookCopy()">
