@@ -33,6 +33,7 @@ namespace LibraryApp.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public JsonResult Search(string title)
         {
             var result = _bookCopyService.Search(title);
